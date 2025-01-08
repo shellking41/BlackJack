@@ -103,8 +103,8 @@ function Header({ text }) {
   }, [text]);
 
   return (
-    <div className={style.container} ref={containerRef} style={{ width: "50%" }}>
-      <canvas ref={canvasRef} width={200} height={80}></canvas>
+    <div className={style.container} ref={containerRef} style={{ width: "50%", minWidth: "160px" }}>
+      <canvas ref={canvasRef}></canvas>
     </div>
   );
 }
