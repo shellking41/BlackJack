@@ -3,9 +3,18 @@ import style from "./Header.module.css";
 
 function Header({ text }) {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
-  useEffect(() => {
+  const handleResize = () => {
     const canvas = canvasRef.current;
+    const container = containerRef.current;
+
+    const containerWith = container.clientWidth;
+    const containerHeight = 60;
+
+    canvas.width = containerWith;
+    canvas.height = containerHeight;
+
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -26,6 +35,14 @@ function Header({ text }) {
 
     context.fillRect(TextBackgroundX2 + 20, TextBackgroundY1 + 10, canvas.width, TextBackgroundY2 + 10);
     context.stroke();
+    //shadow1
+    context.beginPath();
+    context.fillStyle = "rgb(22, 25, 37)";
+    context.moveTo(TextBackgroundX2 + offset + 27.4, TextBackgroundY2);
+    context.lineTo(TextBackgroundX2 + 20, TextBackgroundY2);
+    context.lineTo(TextBackgroundX2 + 20, TextBackgroundY2 + 20);
+    context.fill();
+    context.closePath();
     //flagCut1
     context.beginPath();
     context.fillStyle = "rgb(39, 45, 68)";
@@ -42,6 +59,14 @@ function Header({ text }) {
     context.fillStyle = BackgroundColor;
     context.fillRect(0, TextBackgroundY1 + 10, TextBackgroundX1 + 10, TextBackgroundY2 + 10);
     context.stroke();
+    //shadow2
+    context.beginPath();
+    context.fillStyle = "rgb(22, 25, 37)";
+    context.moveTo(TextBackgroundX1 + 10, TextBackgroundY2);
+    context.lineTo(TextBackgroundX1 - offset + 2.58, TextBackgroundY2);
+    context.lineTo(TextBackgroundX1 + 10, TextBackgroundY2 + 20);
+    context.fill();
+    context.closePath();
     //flagCut2
     context.beginPath();
     context.fillStyle = "rgb(39, 45, 68)";
@@ -66,10 +91,19 @@ function Header({ text }) {
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.fillText(text, canvas.width / 2, 15);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [text]);
 
   return (
-    <div className={style.container}>
+    <div className={style.container} ref={containerRef} style={{ width: "50%" }}>
       <canvas ref={canvasRef} width={200} height={80}></canvas>
     </div>
   );
