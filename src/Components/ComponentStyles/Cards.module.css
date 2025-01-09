@@ -1,14 +1,35 @@
 .cardContainer {
-  background-color: white;
-  width: clamp(15%, 100px, 20%);
-  height: 100%;
+  position: absolute;
+  top: min(20vw, 150px);
+  right: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: clamp(15%, 100px, 20%);
+  height: min(35vw, 200px);
+
+  background-color: white;
+
   border-radius: 5px;
   margin: 2px;
-  position: relative;
+
+  animation-duration: 700ms;
+  animation-timing-function: ease-in-out;
+  animation-name: GetACard;
+  animation-fill-mode: forwards;
 }
+
+@keyframes GetACard {
+  0% {
+  }
+  100% {
+    top: calc(100% - min(35vw, 200px));
+    right: var(--card-right);
+  }
+}
+
 .symbolContainer {
   width: 80%;
 }

@@ -1,38 +1,27 @@
-import React from "react";
+import { useState, useRef } from "react";
 import Header from "../Components/UI/Header/Header";
-import Diamond from "../Components/UI/Cards/Symbols/Diamond";
-import Hearth from "../Components/UI/Cards/Symbols/Hearth";
-import Pikes from "../Components/UI/Cards/Symbols/Pikes";
-import Clubs from "../Components/UI/Cards/Symbols/Clubs";
+
 import Card from "../Components/UI/Cards/Card";
 import style from "./BlackJack.module.css";
-
+import ActionButton from "../Components/ActionButton";
+import { v4 as uuidv4 } from "uuid";
 function BlackJack() {
+  const [PlayerCards, setPlayerCards] = useState([]);
+
   return (
     <>
-      {/* <Header text={"Jack Black"} />
-
-      <div style={{ width: "50%", height: "auto", backgroundColor: "white" }}>
-        <Hearth />
-      </div>
-      <div style={{ width: "50%", height: "auto", backgroundColor: "white" }}>
-        <Diamond />
-      </div>
-      <div style={{ width: "50%", height: "auto", backgroundColor: "white" }}>
-        <Clubs />
-      </div>
-      <div style={{ width: "50%", height: "auto", backgroundColor: "white" }}>
-        <Pikes />
-      </div> */}
       <div className={style.BlackJack}>
         <Header text={"Black Jack"} />
 
-        <span className={style.Cards}>
-          <Card symbol={"Diamond"} number={"5"} />
-          <Card symbol={"Hearth"} number={"J"} />
-          <Card symbol={"Clubs"} number={"A"} />
-          <Card symbol={"Pikes"} number={"10"} />
-        </span>
+        {PlayerCards.map((item, index) => {
+          return (
+            <span key={index}>
+              <Card symbol={item.Symbol} number={item.Number} index={index} />
+            </span>
+          );
+        })}
+
+        <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
       </div>
     </>
   );
