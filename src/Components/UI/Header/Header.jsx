@@ -4,6 +4,7 @@ import style from "./Header.module.css";
 function Header({ text }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const resizeObserverRef = useRef(null);
 
   const handleResize = () => {
     const canvas = canvasRef.current;
@@ -101,14 +102,26 @@ function Header({ text }) {
   };
 
   useEffect(() => {
+    // Create ResizeObserver
+    resizeObserverRef.current = new ResizeObserver(() => {
+      requestAnimationFrame(handleResize);
+    });
+
+    // Start observing
+    if (containerRef.current) {
+      resizeObserverRef.current.observe(containerRef.current);
+    }
+
+    // Initial draw
     handleResize();
-    window.addEventListener("resize", handleResize);
 
+    // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
     };
-  }, [text]);
-
+  }, [handleResize]);
   return (
     <div className={style.container} ref={containerRef}>
       <canvas ref={canvasRef}></canvas>
