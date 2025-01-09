@@ -1,0 +1,12 @@
+.BlackJack {
+  width: clamp(50%, 700px, 80%);
+  min-width: 160px;
+  height: 800px;
+  margin: auto;
+  background-color: rgb(57, 65, 99);
+}
+.Cards {
+  display: flex;
+  flex-direction: row;
+  height: min(35vw, 200px);
+}

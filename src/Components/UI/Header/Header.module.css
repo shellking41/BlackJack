@@ -1,5 +1,8 @@
 .container {
-  margin: auto;
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: min(20vw, 150px);
+  background-color: rgb(39, 45, 68);
+  min-width: "160px";
 }

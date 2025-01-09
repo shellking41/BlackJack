@@ -3,13 +3,20 @@ import { useRef, useEffect } from "react";
 function Pikes() {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const resizeObserverRef = useRef(null);
 
   const handleResize = () => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
 
-    canvas.width = container.clientWidth;
-    canvas.height = container.clientWidth;
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = container.clientWidth * dpr;
+    canvas.height = container.clientWidth * dpr;
+
+    canvas.style.width = `${container.clientWidth}px`;
+    canvas.style.height = `${container.clientWidth}px`;
+
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -94,13 +101,26 @@ function Pikes() {
   };
 
   useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    // Create ResizeObserver
+    resizeObserverRef.current = new ResizeObserver(() => {
+      requestAnimationFrame(handleResize);
+    });
 
+    // Start observing
+    if (containerRef.current) {
+      resizeObserverRef.current.observe(containerRef.current);
+    }
+
+    // Initial draw
+    handleResize();
+
+    // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
     };
-  }, []);
+  }, [handleResize]);
 
   return (
     <div ref={containerRef} style={{ width: "100%", height: "auto" }}>

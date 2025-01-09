@@ -2,13 +2,20 @@ import { useRef, useEffect } from "react";
 
 function Hearth() {
   const CanvasRef = useRef(null);
-  const ContainerRef = useRef(null);
+  const containerRef = useRef(null);
+  const resizeObserverRef = useRef(null);
+
   const handleResize = () => {
     const canvas = CanvasRef.current;
-    const container = ContainerRef.current;
-    canvas.width = container.clientWidth;
-    canvas.height = container.clientWidth;
+    const container = containerRef.current;
 
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = container.clientWidth * dpr;
+    canvas.height = container.clientWidth * dpr;
+
+    canvas.style.width = `${container.clientWidth}px`;
+    canvas.style.height = `${container.clientWidth}px`;
     const ctx = canvas.getContext("2d");
     const scale = canvas.width / 200;
 
@@ -70,17 +77,29 @@ function Hearth() {
   };
 
   useEffect(() => {
+    // Create ResizeObserver
+    resizeObserverRef.current = new ResizeObserver(() => {
+      requestAnimationFrame(handleResize);
+    });
+
+    // Start observing
+    if (containerRef.current) {
+      resizeObserverRef.current.observe(containerRef.current);
+    }
+
+    // Initial draw
     handleResize();
 
-    window.addEventListener("resize", handleResize);
-
+    // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
     };
-  }, []);
+  }, [handleResize]);
 
   return (
-    <div ref={ContainerRef} style={{ width: "100%", height: "auto" }}>
+    <div ref={containerRef} style={{ width: "100%", height: "auto" }}>
       <canvas ref={CanvasRef}></canvas>
     </div>
   );
