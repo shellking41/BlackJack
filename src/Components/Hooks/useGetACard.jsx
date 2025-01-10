@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 function useGetACard() {
   const GetACard = (setPlayerCards) => {
-    setPlayerCards((prevItems) => [...prevItems, { Symbol: "Diamond", Number: "5" }]);
+    setPlayerCards((prevItems) => [...prevItems, { Symbol: "Pikes", Number: "J" }]);
   };
 
   return { GetACard };

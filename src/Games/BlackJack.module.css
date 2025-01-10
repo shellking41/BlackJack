@@ -1,13 +1,16 @@
 .BlackJack {
-  width: clamp(30%, 700px, 80%);
+  width: clamp(50%, 1000px, 95%);
   min-width: 160px;
-  height: 800px;
-  margin: auto;
+  height: clamp(50%, 1100px, 80%);
+
   background-color: rgb(57, 65, 99);
   position: relative;
 }
-.Cards {
-  display: flex;
-  flex-direction: row;
-  height: min(35vw, 200px);
+
+@keyframes GoCenter {
+  0% {
+  }
+  100% {
+    transform: translateX(calc(var(--card-right) - 5%));
+  }
 }
