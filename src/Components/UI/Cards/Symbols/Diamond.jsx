@@ -12,10 +12,10 @@ function Diamond() {
     const dpr = window.devicePixelRatio || 1;
 
     canvas.width = container.clientWidth * dpr;
-    canvas.height = container.clientWidth * dpr;
+    canvas.height = container.clientWidth * 1.3 * dpr;
 
     canvas.style.width = `${container.clientWidth}px`;
-    canvas.style.height = `${container.clientWidth}px`;
+    canvas.style.height = `${container.clientWidth * 1.3}px`;
 
     const ctx = canvas.getContext("2d");
 
@@ -60,7 +60,7 @@ function Diamond() {
   }, [handleResize]);
 
   return (
-    <div ref={containerRef} style={{ width: "100%", height: "auto" }}>
+    <div ref={containerRef} style={{ width: "50%", height: "auto" }}>
       <canvas ref={canvasRef}></canvas>
     </div>
   );

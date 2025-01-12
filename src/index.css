@@ -1,12 +1,13 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: ubuntu;
 }
 body {
   background-color: rgb(39, 45, 68);
 }
-:root{
-  --CardHeight :min(30vw, 20%):
+:root {
+  --BaseColor: rgb(57, 65, 99);
 }
 #root {
   width: 100%;

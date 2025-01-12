@@ -3,9 +3,37 @@
 
   height: clamp(50%, 1100px, 80%);
 
-  background-color: rgb(57, 65, 99);
+  background-color: var(--BaseColor);
   position: relative;
   overflow: hidden;
+}
+
+.headerContainer {
+  width: 100%;
+  height: 20%;
+  background-color: var(--BaseColor);
+}
+.dealerCardContainer {
+  width: 100%;
+  height: 20%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--BaseColor);
+}
+.playerCardContainer {
+  width: 100%;
+  height: 20%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--BaseColor);
+}
+.playButtons {
+  width: 100%;
+  height: 40%;
+  position: relative;
 }
 
 @keyframes GoCenter {
@@ -19,5 +47,31 @@
 @media (max-height: 350px) {
   .BlackJack {
     min-height: 350px;
+  }
+}
+@media (max-height: 500px) {
+  .headerContainer {
+    display: none;
+  }
+  .dealerCardContainer {
+    height: 30%;
+  }
+
+  .playerCardContainer {
+    height: 30%;
+  }
+}
+@media (max-width: 500px) {
+  .playButtons {
+    height: 40%;
+  }
+
+  .dealerCardContainer {
+    height: min(20vw, 20%);
+  }
+  .playerCardContainer {
+    height: min(20vw, 20%);
+    position: absolute;
+    bottom: 0%;
   }
 }

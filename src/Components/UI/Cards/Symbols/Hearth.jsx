@@ -99,7 +99,7 @@ function Hearth() {
   }, [handleResize]);
 
   return (
-    <div ref={containerRef} style={{ width: "100%", height: "auto" }}>
+    <div ref={containerRef} style={{ width: "80%", height: "auto" }}>
       <canvas ref={CanvasRef}></canvas>
     </div>
   );

@@ -123,7 +123,7 @@ function Pikes() {
   }, [handleResize]);
 
   return (
-    <div ref={containerRef} style={{ width: "80%", height: "auto" }}>
+    <div ref={containerRef} style={{ width: "70%", height: "auto" }}>
       <canvas ref={canvasRef}></canvas>
     </div>
   );
