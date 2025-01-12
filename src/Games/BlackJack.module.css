@@ -15,7 +15,7 @@
 }
 .dealerCardContainer {
   width: 100%;
-  height: 20%;
+  height: 25%;
   position: relative;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
 }
 .playerCardContainer {
   width: 100%;
-  height: 20%;
+  height: 25%;
   position: relative;
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
 }
 .playButtons {
   width: 100%;
-  height: 40%;
+  height: 30%;
   position: relative;
 }
 
@@ -54,16 +54,16 @@
     display: none;
   }
   .dealerCardContainer {
-    height: 30%;
+    height: 35%;
   }
 
   .playerCardContainer {
-    height: 30%;
+    height: 35%;
   }
 }
 @media (max-width: 500px) {
   .playButtons {
-    height: 40%;
+    height: 30%;
   }
 
   .dealerCardContainer {

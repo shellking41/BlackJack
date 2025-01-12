@@ -15,21 +15,21 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore }) {
     const Rotator = RotatorRef.current;
     // Calculate horizontal position
     // Cards should be closer together when rotated
-    const spread = -6; // Adjust this value to control card spacing
+    const spread = -5.5; // Adjust this value to control card spacing
     const xOffset = index * spread;
+
     const zIndex = map_range(index, 0, 99, 99, 0);
 
     Card.style.setProperty("--zIndex", zIndex);
     Card.style.setProperty("--card-right", `${50 + xOffset}%`);
 
+    //if not Dealers 2nd card then Flip--> when the game strats the 2nd card is not flipped
     if (DealerCards && !(DealerCards?.length == 2 && DealerCards?.length - 1 == index)) {
       Rotator.classList.add(style.animated);
     }
     if (PlayerCards || Ignore == true) {
       Rotator.classList.add(style.animated);
     }
-
-    // Calculate z-index for proper layering
   }, [index, Ignore, DealerCards?.length]);
 
   function map_range(value, low1, high1, low2, high2) {
@@ -42,8 +42,8 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore }) {
       ref={CardRef}
       style={{
         transition: "transform 0.5s ease-in-out",
-        transform: PlayerCards ? `translateX(${(index - PlayerCards.length + 1) * 60}%) ` : DealerCards ? `translateX(${(index - DealerCards.length + 1) * 60}%) ` : null,
-      }}
+        transform: PlayerCards ? `translateX(${(index - PlayerCards.length + 1) * 55}%) ` : DealerCards ? `translateX(${(index - DealerCards.length + 1) * 60}%) ` : null,
+      }} /*transform--> always push to the left if a new card initialized*/
     >
       <div className={style.Rotator} ref={RotatorRef}>
         <div className={`${style.FrontCard}`}>

@@ -3,16 +3,14 @@ import useGetACard from "./useGetACard";
 
 function useBJGameStart() {
   const { GetACard } = useGetACard();
-  const BJGameStart = (setPlayerCards, setDealersCards) => {
+  const BJGameStart = async (setPlayerCards, setDealersCards) => {
     GetACard(setPlayerCards, null);
 
     GetACard(null, setDealersCards);
 
     GetACard(setPlayerCards, null);
 
-    const timer = setTimeout(() => {
-      GetACard(null, setDealersCards);
-    }, 100);
+    await GetACard(null, setDealersCards);
 
     return () => clearTimeout(timer); // A timeout törlésére a komponens eltávolításakor
   };
