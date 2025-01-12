@@ -1,12 +1,20 @@
 import React from "react";
 import useGetACard from "./Hooks/useGetACard";
 
-function ActionButton({ Action, setPlayerCards }) {
+function ActionButton({ Action, setPlayerCards, setDealerCards }) {
   const { GetACard } = useGetACard();
 
   const handleAction = (Action) => {
-    if (Action == "GetACard") {
-      GetACard(setPlayerCards);
+    if (setPlayerCards) {
+      if (Action == "GetACard") {
+        GetACard(setPlayerCards);
+      }
+    }
+
+    if (setDealerCards) {
+      if (Action == "GetACard") {
+        GetACard(setDealerCards);
+      }
     }
   };
 

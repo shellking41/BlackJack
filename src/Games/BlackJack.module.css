@@ -1,10 +1,11 @@
 .BlackJack {
-  width: clamp(50%, 1000px, 95%);
-  min-width: 160px;
+  width: clamp(45%, 900px, 90%);
+
   height: clamp(50%, 1100px, 80%);
 
   background-color: rgb(57, 65, 99);
   position: relative;
+  overflow: hidden;
 }
 
 @keyframes GoCenter {
@@ -12,5 +13,11 @@
   }
   100% {
     transform: translateX(calc(var(--card-right) - 5%));
+  }
+}
+
+@media (max-height: 350px) {
+  .BlackJack {
+    min-height: 350px;
   }
 }

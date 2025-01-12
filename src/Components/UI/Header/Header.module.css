@@ -6,3 +6,8 @@
   background-color: rgb(39, 45, 68);
   min-width: "160px";
 }
+@media (max-height: 500px) {
+  .container {
+    display: none;
+  }
+}
