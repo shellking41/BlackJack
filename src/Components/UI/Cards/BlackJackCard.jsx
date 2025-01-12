@@ -42,7 +42,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore }) {
       ref={CardRef}
       style={{
         transition: "transform 0.5s ease-in-out",
-        transform: PlayerCards ? `translateX(${(index - PlayerCards.length + 1) * 55}%) ` : DealerCards ? `translateX(${(index - DealerCards.length + 1) * 60}%) ` : null,
+        transform: PlayerCards ? `translateX(${(index - PlayerCards.length + 1) * 55}%) ` : DealerCards ? `translateX(${(index - DealerCards.length + 1) * 55}%) ` : null,
       }} /*transform--> always push to the left if a new card initialized*/
     >
       <div className={style.Rotator} ref={RotatorRef}>

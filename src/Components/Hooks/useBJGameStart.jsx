@@ -11,8 +11,6 @@ function useBJGameStart() {
     GetACard(setPlayerCards, null);
 
     await GetACard(null, setDealersCards);
-
-    return () => clearTimeout(timer); // A timeout törlésére a komponens eltávolításakor
   };
 
   return { BJGameStart };
