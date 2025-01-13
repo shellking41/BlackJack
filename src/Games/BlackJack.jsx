@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import useBJGameStart from "../Components/Hooks/useBJGameStart";
 
 function BlackJack() {
+  const ShakerRef = useRef(null);
+
   const [PlayerCards, setPlayerCards] = useState([]);
   const [DealerCards, setDealerCards] = useState([]);
   const [Ignore, setIgnore] = useState(false);
@@ -36,7 +38,7 @@ function BlackJack() {
           {DealerCards.map((item, index) => {
             return (
               <div key={index}>
-                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} DealerCards={DealerCards} Ignore={Ignore} />
+                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} DealerCards={DealerCards} Ignore={Ignore} ShakerRef={ShakerRef} />
               </div>
             );
           })}
@@ -46,13 +48,14 @@ function BlackJack() {
           <ActionButton Action={"GetACard"} setDealerCards={setDealerCards} />
           <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
           <ActionButton Action={"Stand"} setIgnore={setIgnore} />
+          <ActionButton Action={"Shake"} ShakerRef={ShakerRef} />
         </div>
 
         <div className={style.playerCardContainer}>
           {PlayerCards.map((item, index) => {
             return (
               <div key={index}>
-                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} PlayerCards={PlayerCards} Ignore={Ignore} />
+                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} PlayerCards={PlayerCards} Ignore={Ignore} ShakerRef={ShakerRef} />
               </div>
             );
           })}
