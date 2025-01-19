@@ -1,0 +1,7 @@
+.ActionButton {
+  width: 20%;
+  height: 20%;
+  border-radius: 30px;
+  border: none;
+  font-size: min(calc(2rem + 50vw), calc(0.5rem + 0.1vw));
+}

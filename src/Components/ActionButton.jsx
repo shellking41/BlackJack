@@ -1,11 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import useGetACard from "./Hooks/useGetACard";
-import style from "./ComponentStyles/Shaker.module.css";
-
-function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, ShakerRef }) {
+import style from "../Components/ComponentStyles/ActionButton.module.css";
+function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGameOver }) {
   const { GetACard } = useGetACard();
 
-  const handleAction = (Action) => {
+  const handleAction = async (Action) => {
     if (Action == "Stand") {
       setIgnore(true);
     }
@@ -21,27 +20,19 @@ function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, Shake
         GetACard(setDealerCards);
       }
     }
-  };
-
-  const handleHoverAction = (Action) => {
-    if (!ShakerRef?.current) {
-      return;
+    if (Action == "GameOver") {
+      setGameOver({ isGameOver: true, PushCards: 100 });
     }
-    if (Action == "Shake") {
-      ShakerRef.current.classList.add(style.Shaker);
+    if (Action == "StartGame") {
+      await setPlayerCards([]);
+      await setDealerCards([]);
+      setGameOver({ isGameOver: false, PushCards: 0 });
     }
   };
 
   return (
-    <button
-      onClick={() => handleAction(Action)}
-      onMouseMove={() => {
-        if (Action === "Shake") {
-          handleHoverAction(Action);
-        }
-      }}
-    >
-      {Action == "Stand" ? "Stand" : "Get A Card"}
+    <button className={style.ActionButton} onClick={() => handleAction(Action)}>
+      {Action}
     </button>
   );
 }

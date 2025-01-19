@@ -3,12 +3,12 @@ import Clubs from "./Symbols/Clubs";
 import Diamond from "./Symbols/Diamond";
 import Hearth from "./Symbols/Hearth";
 import Pikes from "./Symbols/Pikes";
-import Shaker from "../../Shaker";
+
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Rotator from "../../Rotator";
 
-function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, ShakerRef }) {
+function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCards }) {
   const CardRef = useRef(null);
   const RotatorRef = useRef(null);
 
@@ -37,7 +37,11 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, ShakerR
       ref={CardRef}
       style={{
         transition: "transform 0.5s ease-in-out",
-        transform: PlayerCards ? `translateX(${(index - PlayerCards.length + 1) * 55}%) ` : DealerCards ? `translateX(${(index - DealerCards.length + 1) * 55}%) ` : null,
+        transform: PlayerCards
+          ? `translateX(${(index - PlayerCards.length + 1) * 55 - PushCards * 20}%) `
+          : DealerCards
+          ? `translateX(${(index - DealerCards.length + 1) * 55 - PushCards * 20}%) `
+          : null,
       }} /*transform--> always push to the left if a new card initialized*/
     >
       <Rotator DealerCards={DealerCards} Ignore={Ignore} PlayerCards={PlayerCards} index={index}>

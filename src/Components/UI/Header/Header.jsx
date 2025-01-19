@@ -21,7 +21,7 @@ function Header({ text }) {
     canvas.style.width = `${containerWith}px`;
     canvas.style.height = `${containerHeight}px`;
 
-    const scale = canvas.width / 300;
+    const scale = canvas.width / 400;
     const context = canvas.getContext("2d");
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -33,12 +33,11 @@ function Header({ text }) {
     var borderWidth = 3;
     var offset = borderWidth * 2;
 
-    const BackgroundColor = "rgb(62, 70, 99)";
+    const BackgroundColor = "rgb(255, 255, 255)";
 
     //flag1
     context.beginPath();
-    context.fillStyle = "rgb(39, 45, 68)";
-    context.fillRect(TextBackgroundX2 + 20 - borderWidth * scale, TextBackgroundY1 + 10 - borderWidth * scale, canvas.width + offset * scale, TextBackgroundY2 + offset * scale);
+
     context.fillStyle = BackgroundColor;
 
     context.fillRect(TextBackgroundX2 + 20 * scale, TextBackgroundY1 + 10 * scale, canvas.width, TextBackgroundY2 + 10 * scale);
@@ -53,7 +52,7 @@ function Header({ text }) {
     context.closePath();
     //flagCut1
     context.beginPath();
-    context.fillStyle = "rgb(39, 45, 68)";
+    context.fillStyle = "rgb(57, 65, 99)";
     context.moveTo(canvas.width - 20 * scale, TextBackgroundY2);
     context.lineTo(canvas.width, TextBackgroundY2 - 20 * scale);
     context.lineTo(canvas.width, TextBackgroundY2 + 20 * scale);
@@ -62,8 +61,7 @@ function Header({ text }) {
 
     //flag2
     context.beginPath();
-    context.fillStyle = "rgb(39, 45, 68)";
-    context.fillRect(0 - borderWidth, TextBackgroundY1 + 10 * scale - borderWidth, TextBackgroundX1 + 10 + offset * scale, TextBackgroundY2 + offset * scale);
+
     context.fillStyle = BackgroundColor;
     context.fillRect(0, TextBackgroundY1 + 10 * scale, TextBackgroundX1 + 10 * scale, TextBackgroundY2 + 10 * scale);
     context.stroke();
@@ -77,7 +75,7 @@ function Header({ text }) {
     context.closePath();
     //flagCut2
     context.beginPath();
-    context.fillStyle = "rgb(39, 45, 68)";
+    context.fillStyle = "rgb(57, 65, 99)";
     context.moveTo(20, TextBackgroundY2);
     context.lineTo(0, TextBackgroundY2 - 20 * scale);
     context.lineTo(0, TextBackgroundY2 + 20 * scale);
@@ -86,7 +84,7 @@ function Header({ text }) {
 
     //text background
     context.beginPath();
-    context.fillStyle = "rgb(39, 45, 68)";
+    context.fillStyle = "rgb(68, 39, 39)";
     context.fillRect(TextBackgroundX1 - borderWidth * scale, TextBackgroundY1 - borderWidth * scale, TextBackgroundX2 + offset * scale, TextBackgroundY2 + offset * scale);
     context.fillStyle = BackgroundColor;
     context.fillRect(TextBackgroundX1, TextBackgroundY1, TextBackgroundX2, TextBackgroundY2);
@@ -95,7 +93,7 @@ function Header({ text }) {
     //text
     context.textRendering = "optimizeLegibility";
     context.font = `${20 * scale}px Arial`;
-    context.fillStyle = "white";
+    context.fillStyle = "black";
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.fillText(text, canvas.width / 2, 15 * scale);
