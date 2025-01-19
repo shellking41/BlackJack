@@ -6,6 +6,7 @@ import style from "./BlackJack.module.css";
 import ActionButton from "../Components/ActionButton";
 import { v4 as uuidv4 } from "uuid";
 import useBJGameStart from "../Components/Hooks/useBJGameStart";
+import Bet from "../Components/Bet";
 
 function BlackJack() {
   const ShakerRef = useRef(null);
@@ -48,11 +49,16 @@ function BlackJack() {
             <Header text={"Black Jack"} />
           </div>
           <div className={style.playButtons}>
-            <ActionButton Action={"GetACard"} setDealerCards={setDealerCards} />
-            <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
-            <ActionButton Action={"Stand"} setIgnore={setIgnore} />
-            <ActionButton Action={"GameOver"} setGameOver={setGameOver} />
-            <ActionButton Action={"StartGame"} setGameOver={setGameOver} setDealerCards={setDealerCards} setPlayerCards={setPlayerCards} />
+            <div className={style.ActionButtons}>
+              <ActionButton Action={"GetACard"} setDealerCards={setDealerCards} />
+              <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
+              <ActionButton Action={"Stand"} setIgnore={setIgnore} />
+              <ActionButton Action={"GameOver"} setGameOver={setGameOver} />
+              <ActionButton Action={"StartGame"} setGameOver={setGameOver} setDealerCards={setDealerCards} setPlayerCards={setPlayerCards} />
+            </div>
+            <div className={style.Bet}>
+              <Bet />
+            </div>
           </div>
         </div>
 

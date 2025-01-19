@@ -1,0 +1,29 @@
+.BetInput {
+  width: 20%;
+  height: 20%;
+  margin: 2px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+/* Webkit alapú böngészők (Chrome, Edge, Safari) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.BetButton {
+  width: 50%;
+  height: 40%;
+  margin: 2px;
+  background-color: rgba(0, 206, 0, 0.699);
+  border-radius: 5px;
+  border: none;
+}
