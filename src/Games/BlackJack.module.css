@@ -1,7 +1,7 @@
 .BlackJack {
   width: clamp(45%, 900px, 90%);
 
-  height: clamp(80%, 1500px, 90%);
+  aspect-ratio: 1/1.5;
 
   background-color: var(--BaseColor);
   position: relative;
@@ -15,19 +15,21 @@
 }
 .dealerCardContainer {
   width: 100%;
-  height: 25%;
+  height: 50%;
   position: relative;
   display: flex;
-  align-items: center;
-  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+
   background-color: var(--BaseColor);
 }
 .playerCardContainer {
   width: 100%;
-  height: 25%;
+  height: 50%;
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   background-color: var(--BaseColor);
 }
 .playButtons {
@@ -73,29 +75,26 @@
   }
 }
 
-@media (max-height: 350px) {
+@media (max-height: 450px) {
   .BlackJack {
-    min-height: 350px;
+    width: 50%;
   }
-}
-@media (max-height: 500px) {
   .headerContainer {
     display: none;
   }
 }
-@media (max-width: 500px) {
-  .BlackJack {
-    height: 80%;
-  }
+@media (max-height: 500px) {
+}
+@media (max-width: 800px) {
   .CenterContainer {
     height: calc(100% - min(20vw, 20%) - min(20vw, 20%));
   }
-  .dealerCardContainer {
+  /* .dealerCardContainer {
     height: min(20vw, 20%);
   }
   .playerCardContainer {
     height: min(20vw, 20%);
     position: absolute;
     bottom: 0%;
-  }
+  } */
 }

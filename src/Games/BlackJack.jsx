@@ -33,6 +33,8 @@ function BlackJack() {
 
   return (
     <>
+      <ActionButton Action={"GetACard"} setDealerCards={setDealerCards} />
+      <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
       <div className={style.BlackJack}>
         <div className={style.dealerCardContainer}>
           {DealerCards.map((item, index) => {
@@ -44,7 +46,7 @@ function BlackJack() {
           })}
         </div>
 
-        <div className={style.CenterContainer}>
+        {/* <div className={style.CenterContainer}>
           <div className={style.headerContainer}>
             <Header text={"Black Jack"} />
           </div>
@@ -59,8 +61,8 @@ function BlackJack() {
             <div className={style.Bet}>
               <Bet />
             </div>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
 
         <div className={style.playerCardContainer}>
           {PlayerCards.map((item, index) => {

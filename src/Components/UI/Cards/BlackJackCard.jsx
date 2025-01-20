@@ -17,13 +17,14 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
 
     // Calculate horizontal position
     // Cards should be closer together when rotated
-    const spread = -5.5; // Adjust this value to control card spacing
-    const xOffset = index * spread;
+    const spread = -3.8; // Adjust this value to control card spacing
+    const yOffset = index * spread;
 
-    const zIndex = map_range(index, 0, 99, 99, 0);
+    // const zIndex = map_range(index, 0, 99, 99, 0);
 
-    Card.style.setProperty("--zIndex", zIndex);
-    Card.style.setProperty("--card-right", `${50 + xOffset}%`);
+    Card.style.setProperty("--zIndex", index);
+    Card.style.setProperty("--card-right", `${45}%`);
+    Card.style.setProperty("--card-down", `${yOffset}%`);
   }, [index, Ignore, DealerCards?.length]);
 
   function map_range(value, low1, high1, low2, high2) {
@@ -38,9 +39,9 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
       style={{
         transition: "transform 0.5s ease-in-out",
         transform: PlayerCards
-          ? `translateX(${(index - PlayerCards.length + 1) * 55 - PushCards * 20}%) `
+          ? `translateX(${(index - PlayerCards.length + 1) * 38 - PushCards * 20}%) translateY(${(index - PlayerCards.length + 1) * 10}%)  `
           : DealerCards
-          ? `translateX(${(index - DealerCards.length + 1) * 55 - PushCards * 20}%) `
+          ? `translateX(${(index - DealerCards.length + 1) * 38 - PushCards * 20}%) translateY(${(index - DealerCards.length + 1) * 10}%) `
           : null,
       }} /*transform--> always push to the left if a new card initialized*/
     >
@@ -51,9 +52,6 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
           </div>
           <div className={style.symbolContainer}>
             {symbol == "Hearth" ? <Hearth /> : symbol == "Pikes" ? <Pikes /> : symbol == "Clubs" ? <Clubs /> : symbol == "Diamond" ? <Diamond /> : <p>Something wrong</p>}
-          </div>
-          <div className={style.numberContainerBottom}>
-            <h1>{number}</h1>
           </div>
         </div>
         <div className={style.CardsBack}></div>
