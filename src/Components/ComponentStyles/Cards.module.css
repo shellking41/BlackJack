@@ -58,28 +58,16 @@
     right: calc(var(--card-right) - 5%); /*Menyire menjen balra a kártya */
   }
 }
-
-/* @media (max-width: 650px) {
-  .numberContainerTop h1 {
-    font-size: calc(0.4em + 10%);
+@media (max-width: 600px) {
+  .CardContainer {
+    width: 15%;
   }
-  .symbolContainer {
-    width: 40%;
+}
+@media (max-height: 450px) {
+  .CardContainer {
+    aspect-ratio: 1/1.5;
   }
-   .CardContainer {
-    height: clamp(10%, 150px, 20%);
-  } 
-} */
-
-/* @media (max-height: 600px) {
-  .numberContainerTop h1 {
-    font-size: calc(0.4em + 10%);
-  }
-  .symbolContainer {
-    width: 40%;
-  }
-} */
-
+}
 .symbolContainer {
   width: 80%;
   margin-left: 2px;
@@ -87,5 +75,5 @@
 
 .numberContainerTop {
   margin-left: 2px;
-  font-size: clamp(2px, 2vw, 30px);
+  font-size: clamp(1px, calc(1vw + 0.5vh), 20px);
 }

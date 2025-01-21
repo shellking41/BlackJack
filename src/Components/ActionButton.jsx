@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useGetACard from "./Hooks/useGetACard";
+import useGetACard from "../Hooks/useGetACard";
 import style from "../Components/ComponentStyles/ActionButton.module.css";
 function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGameOver }) {
   const { GetACard } = useGetACard();

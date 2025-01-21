@@ -4,10 +4,14 @@ import "./App.css";
 
 import BlackJack from "./Games/BlackJack";
 
+import { CardContextProvider } from "./Contexts/CardContext";
+
 function App() {
   return (
     <>
-      <BlackJack />
+      <CardContextProvider>
+        <BlackJack />
+      </CardContextProvider>
     </>
   );
 }

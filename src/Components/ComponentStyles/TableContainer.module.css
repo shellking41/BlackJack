@@ -1,0 +1,98 @@
+.BlackJack {
+  width: 70%;
+
+  background-color: var(--BaseColor);
+  position: relative;
+  overflow: hidden;
+  border-radius: 0px 30px 30px 0;
+}
+
+.headerContainer {
+  width: clamp(30%, 300px, 40%);
+  height: 20%;
+}
+.dealerCardContainer {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  background-color: var(--BaseColor);
+}
+.playerCardContainer {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--BaseColor);
+}
+.playButtons {
+  width: 80%;
+  height: 50%;
+  position: relative;
+  display: flex;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(39, 45, 68);
+}
+.ActionButtons {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Bet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60%;
+  width: 100%;
+}
+.CenterContainer {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@keyframes GoCenter {
+  0% {
+  }
+  100% {
+    transform: translateX(calc(var(--card-right) - 5%));
+  }
+}
+
+@media (max-height: 450px) {
+  .BlackJack {
+    width: 50%;
+  }
+  .headerContainer {
+    display: none;
+  }
+}
+@media (max-height: 500px) {
+}
+@media (max-width: 800px) {
+  .CenterContainer {
+    height: calc(100% - min(20vw, 20%) - min(20vw, 20%));
+  }
+  /* .dealerCardContainer {
+      height: min(20vw, 20%);
+    }
+    .playerCardContainer {
+      height: min(20vw, 20%);
+      position: absolute;
+      bottom: 0%;
+    } */
+}

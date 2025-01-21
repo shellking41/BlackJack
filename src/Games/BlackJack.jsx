@@ -1,80 +1,40 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import Header from "../Components/UI/Header/Header";
 
 import BlackJackCard from "../Components/UI/Cards/BlackJackCard";
 import style from "./BlackJack.module.css";
 import ActionButton from "../Components/ActionButton";
 import { v4 as uuidv4 } from "uuid";
-import useBJGameStart from "../Components/Hooks/useBJGameStart";
-import Bet from "../Components/Bet";
+import useBJGameStart from "../Hooks/useBJGameStart";
+import { CardContext } from "../Contexts/CardContext";
+import InteractionContainer from "../Components/InteractionContainer";
+import useGetACard from "../Hooks/useGetACard";
+import TableContainer from "../Components/TableContainer";
 
 function BlackJack() {
-  const ShakerRef = useRef(null);
+  const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
 
-  const [PlayerCards, setPlayerCards] = useState([]);
-  const [DealerCards, setDealerCards] = useState([]);
-  const [Ignore, setIgnore] = useState(false);
+  const ShakerRef = useRef(null);
+  const [hasRun, setHasRun] = useState(false);
+
   const [GameOver, setGameOver] = useState({ isGameOver: false, PushCards: 0 });
 
   const { BJGameStart } = useBJGameStart();
-
-  if ((PlayerCards.length == 0 || DealerCards.length == 0) && !GameOver.isGameOver) {
-    BJGameStart(setPlayerCards, setDealerCards);
-
-    console.log("asd");
-  }
-
+  const { GetACard } = useGetACard();
   useEffect(() => {
-    // BJGameStart(setDealerCards, setPlayerCards); // commented but still present
-    console.log(DealerCards);
-    console.log("-----");
-    console.log(PlayerCards);
-  }, [DealerCards, PlayerCards]);
+    if ((PlayerCards.length == 0 || DealerCards.length == 0) && !GameOver.isGameOver) {
+      BJGameStart(setPlayerCards, setDealerCards);
+
+      console.log("asd");
+    }
+  }, []);
 
   return (
-    <>
-      <ActionButton Action={"GetACard"} setDealerCards={setDealerCards} />
-      <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
-      <div className={style.BlackJack}>
-        <div className={style.dealerCardContainer}>
-          {DealerCards.map((item, index) => {
-            return (
-              <div key={index}>
-                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} DealerCards={DealerCards} Ignore={Ignore} PushCards={GameOver.PushCards} />
-              </div>
-            );
-          })}
-        </div>
+    <div className={style.GameContainer}>
+      <InteractionContainer />
 
-        {/* <div className={style.CenterContainer}>
-          <div className={style.headerContainer}>
-            <Header text={"Black Jack"} />
-          </div>
-          <div className={style.playButtons}>
-            <div className={style.ActionButtons}>
-              <ActionButton Action={"GetACard"} setDealerCards={setDealerCards} />
-              <ActionButton Action={"GetACard"} setPlayerCards={setPlayerCards} />
-              <ActionButton Action={"Stand"} setIgnore={setIgnore} />
-              <ActionButton Action={"GameOver"} setGameOver={setGameOver} />
-              <ActionButton Action={"StartGame"} setGameOver={setGameOver} setDealerCards={setDealerCards} setPlayerCards={setPlayerCards} />
-            </div>
-            <div className={style.Bet}>
-              <Bet />
-            </div>
-          </div> 
-        </div>*/}
-
-        <div className={style.playerCardContainer}>
-          {PlayerCards.map((item, index) => {
-            return (
-              <div key={index}>
-                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} PlayerCards={PlayerCards} Ignore={Ignore} PushCards={GameOver.PushCards} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </>
+      <TableContainer GameOver={GameOver} />
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import style from "../../ComponentStyles/Cards.module.css";
 import Clubs from "./Symbols/Clubs";
 import Diamond from "./Symbols/Diamond";
-import Hearth from "./Symbols/Hearth";
+import Hearth from "./Symbols/Heart";
 import Pikes from "./Symbols/Pikes";
 
 import { useEffect, useRef, useState } from "react";
@@ -17,7 +17,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
 
     // Calculate horizontal position
     // Cards should be closer together when rotated
-    const spread = -3.8; // Adjust this value to control card spacing
+    const spread = -1; // Adjust this value to control card spacing
     const yOffset = index * spread;
 
     // const zIndex = map_range(index, 0, 99, 99, 0);
@@ -51,7 +51,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
             <h1>{number}</h1>
           </div>
           <div className={style.symbolContainer}>
-            {symbol == "Hearth" ? <Hearth /> : symbol == "Pikes" ? <Pikes /> : symbol == "Clubs" ? <Clubs /> : symbol == "Diamond" ? <Diamond /> : <p>Something wrong</p>}
+            {symbol == "Heart" ? <Hearth /> : symbol == "Pikes" ? <Pikes /> : symbol == "Clubs" ? <Clubs /> : symbol == "Diamond" ? <Diamond /> : <p>Something wrong</p>}
           </div>
         </div>
         <div className={style.CardsBack}></div>
