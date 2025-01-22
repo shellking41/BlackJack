@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useGetACard from "../Hooks/useGetACard";
 import style from "../Components/ComponentStyles/ActionButton.module.css";
-function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGameOver }) {
+function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGameOver, Text }) {
   const { GetACard } = useGetACard();
 
   const handleAction = async (Action) => {
@@ -32,7 +32,7 @@ function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGa
 
   return (
     <button className={style.ActionButton} onClick={() => handleAction(Action)}>
-      {Action}
+      {Text}
     </button>
   );
 }

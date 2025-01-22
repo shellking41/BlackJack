@@ -1,4 +1,20 @@
 .ActionButton {
   border-radius: 5px;
-  background-color: var(--ActionButtonColor);
+  border: none;
+  box-shadow: var(--DefaultShadow);
+  background-color: var(--QuickBetButtonColor);
+  color: white;
+  font-size: clamp(2px, calc(1vw + 0.5vh), 30px);
+  width: 45%;
+  aspect-ratio: 16/7;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  .ActionButton {
+    aspect-ratio: 16/4;
+  }
 }
