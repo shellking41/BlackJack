@@ -5,7 +5,15 @@
 }
 
 :root {
-  --BaseColor: #10242c;
+  /* --BaseColor: #10242c; */
+  /* --BaseColor: #162e3b; */
+  --TableColor: #081c24;
+  --ActionButtonColor: #1c3441;
+  --InteractionContainerColor: #152d3a;
+  --QuickBetButtonColor: #2e4655;
+  --BackGroundColor: #0e212f;
+  --BetButtonColor: #00e500;
+  --InteractionContainerFontSize: clamp(1px, calc(1vw + 0.5vh), 15px);
 }
 #root {
   width: 100%;
@@ -14,7 +22,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #1c2c3c;
+  background-color: var(--BackGroundColor);
 }
 @media (max-height: 350px) {
   #root {

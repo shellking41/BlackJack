@@ -1,17 +1,19 @@
 .BetContainer {
   width: 100%;
-  height: 10%;
+  height: 15%;
   display: flex;
 
   justify-content: flex-start;
   flex-direction: column;
+  font-weight: bolder;
 }
 .BetContainer div {
   display: flex;
   height: 100%;
 }
 .BetContainer div p {
-  font-size: clamp(2px, calc(1vw + 0.5vh), 15px);
+  font-size: var(--InteractionContainerFontSize);
+  color: rgb(154, 168, 190);
 }
 .BetAmount {
   width: 50%;
@@ -27,15 +29,42 @@
   margin-top: clamp(10px, calc(1vw + 0.5vh), 15px);
   margin-right: clamp(10px, calc(1vw + 0.5vh), 15px);
 }
-.BetInput {
+.BetInputQuickBetContainer {
+  background-color: var(--QuickBetButtonColor);
+  width: 100%;
+  padding: 2px;
+}
+.BetInputContainer {
   width: 70%;
   height: 100%;
-  margin: 2px;
+
+  position: relative;
+}
+
+.BetInputContainer::before {
+  content: "$";
+  background-color: var(--BetButtonColor);
+  display: flex;
+  aspect-ratio: 1/1;
+  height: 50%;
+
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--InteractionContainerFontSize);
+  border-radius: 30px;
+}
+.BetInput {
+  width: 100%;
+  height: 100%;
   background-color: black;
   color: white;
   border: none;
 }
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -44,4 +73,26 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+.QuickBetContainer {
+  width: 30%;
+  position: relative;
+}
+.QuickBetContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 50%;
+  width: 2px;
+  border-radius: 5px;
+  height: 80%;
+  background-color: black;
+}
+.QuickBetContainer button {
+  background-color: var(--QuickBetButtonColor);
+  width: 50%;
+  border: none;
+  font-size: var(--InteractionContainerFontSize);
+  color: white;
 }

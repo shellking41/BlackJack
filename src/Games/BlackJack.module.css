@@ -12,5 +12,8 @@
 @media (max-width: 600px) {
   .GameContainer {
     aspect-ratio: 9/15;
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 }
