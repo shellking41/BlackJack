@@ -21,9 +21,14 @@ function BlackJack() {
 
   const { BJGameStart } = useBJGameStart();
   const { GetACard } = useGetACard();
+
+  useEffect(() => {
+    console.log(PlayerCards);
+  }, [PlayerCards]);
+
   useEffect(() => {
     if ((PlayerCards.length == 0 || DealerCards.length == 0) && !GameOver.isGameOver) {
-      BJGameStart(setPlayerCards, setDealerCards);
+      BJGameStart(setPlayerCards, setDealerCards, PlayerCards);
 
       console.log("asd");
     }
