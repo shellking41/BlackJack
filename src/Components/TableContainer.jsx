@@ -3,12 +3,15 @@ import BlackJackCard from "../Components/UI/Cards/BlackJackCard";
 import { CardContext } from "../Contexts/CardContext";
 import ActionButton from "./ActionButton";
 import style from "../Components/ComponentStyles/TableContainer.module.css";
+import Deck from "./UI/Deck";
 function TableContainer({ GameOver }) {
   const { setDealerCards, setPlayerCards, PlayerCards, DealerCards } = useContext(CardContext);
   const [Ignore, setIgnore] = useState(false);
   return (
     <>
       <div className={style.BlackJack}>
+        <Deck />
+
         <div className={style.dealerCardContainer}>
           {DealerCards.map((item, index) => {
             return (

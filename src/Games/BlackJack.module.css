@@ -3,6 +3,7 @@
   flex-direction: row;
   width: 80%;
   aspect-ratio: 16/9;
+
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
   border-radius: 30px;
 }
@@ -13,7 +14,7 @@
 }
 @media (max-width: 600px) {
   .GameContainer {
-    aspect-ratio: 9/15;
+    aspect-ratio: 9/12;
     width: 90%;
     flex-direction: column-reverse;
     align-items: center;

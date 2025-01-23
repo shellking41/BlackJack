@@ -22,17 +22,21 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
 
     // const zIndex = map_range(index, 0, 99, 99, 0);
 
-    Card.style.setProperty("--zIndex", index);
+    Card.style.setProperty("--zIndex", index + 1 * 10);
     Card.style.setProperty("--card-right", `${45}%`);
     Card.style.setProperty("--card-down", `${yOffset}%`);
-  }, [index, Ignore, DealerCards?.length]);
+
+    if (PlayerCards) {
+      Card.style.setProperty("--starting-pointY", `-110%`);
+      Card.style.setProperty("--starting-pointX", `5%`);
+    }
+  }, [index, Ignore, DealerCards?.length, PlayerCards]);
 
   function map_range(value, low1, high1, low2, high2) {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   }
 
   return (
-    // <Shaker ShakerRef={ShakerRef}>
     <div
       className={style.CardContainer}
       ref={CardRef}
@@ -57,7 +61,6 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
         <div className={style.CardsBack}></div>
       </Rotator>
     </div>
-    // </Shaker>
   );
 }
 

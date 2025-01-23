@@ -22,14 +22,8 @@ body {
 #root {
   width: 100%;
   height: 100dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  place-items: center; /* Vízszintes és függőleges középre igazítás egyszerre */
+
   background-color: var(--BackGroundColor);
-}
-@media (max-height: 350px) {
-  #root {
-    min-height: 350px;
-  }
 }

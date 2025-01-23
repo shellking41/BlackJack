@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import style from "./ComponentStyles/Rotator.module.css";
-
+//Flipping the card
 function Rotator({ children, DealerCards, index, Ignore, PlayerCards }) {
   const RotatorRef = useRef(null);
 

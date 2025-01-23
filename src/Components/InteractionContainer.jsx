@@ -7,6 +7,7 @@ import { GiCardDraw } from "react-icons/gi";
 import { TbCardsFilled } from "react-icons/tb";
 import { TbBoxMultiple2 } from "react-icons/tb";
 import { BsSignStopFill } from "react-icons/bs";
+import BetButton from "./BetButton";
 
 function InteractionContainer() {
   const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
@@ -69,6 +70,7 @@ function InteractionContainer() {
           />
         </div>
       </div>
+      <BetButton />
     </div>
   );
 }

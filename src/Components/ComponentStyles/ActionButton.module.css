@@ -6,6 +6,7 @@
   color: white;
   font-size: clamp(2px, calc(1vw + 0.5vh), 30px);
   width: 45%;
+  padding: 2px;
   aspect-ratio: 16/7;
   display: flex;
   justify-content: center;
@@ -15,6 +16,7 @@
 }
 @media (max-width: 600px) {
   .ActionButton {
-    aspect-ratio: 16/4;
+    width: 45%;
+    aspect-ratio: 16/3;
   }
 }
