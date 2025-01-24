@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import style from "../Components/ComponentStyles/InteractionContainer.module.css";
 import ActionButton from "./ActionButton";
 import Bet from "./Bet";
@@ -11,6 +11,7 @@ import BetButton from "./BetButton";
 
 function InteractionContainer() {
   const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
+
   return (
     <div className={style.InteractionContainer}>
       <Bet />
@@ -58,7 +59,7 @@ function InteractionContainer() {
           />
           <ActionButton
             Action={"GetACard"}
-            setPlayerCards={setPlayerCards}
+            setPlayerCards={setDealerCards}
             Text={
               <p>
                 Double{" "}

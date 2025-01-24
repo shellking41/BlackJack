@@ -92,3 +92,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.CardValueCounterContainer {
+  width: 10%;
+  aspect-ratio: 16/5;
+  background-color: var(--QuickBetButtonColor);
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: var(--DefaultShadow);
+  position: absolute;
+  top: 25%;
+  right: 35%;
+  z-index: 500;
+}

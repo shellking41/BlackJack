@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Rotator from "../../Rotator";
 
-function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCards }) {
+function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCards, FirstPlayerCardRef }) {
   const CardRef = useRef(null);
   const RotatorRef = useRef(null);
 
@@ -17,20 +17,43 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
 
     // Calculate horizontal position
     // Cards should be closer together when rotated
-    const spread = -1; // Adjust this value to control card spacing
-    const yOffset = index * spread;
+    const ySpread = -1;
+    const xSpread = -2; // Adjust this value to control card spacing
+    const yOffset = index * ySpread;
+    const xOffset = index * xSpread;
 
     // const zIndex = map_range(index, 0, 99, 99, 0);
 
     Card.style.setProperty("--zIndex", index + 1 * 10);
-    Card.style.setProperty("--card-right", `${45}%`);
+    Card.style.setProperty("--card-right", `${45 + xOffset}%`);
     Card.style.setProperty("--card-down", `${yOffset}%`);
 
     if (PlayerCards) {
       Card.style.setProperty("--starting-pointY", `-110%`);
       Card.style.setProperty("--starting-pointX", `5%`);
+      requestAnimationFrame(() => {
+        if (Card.id == 0) {
+          const computedStyle = window.getComputedStyle(Card);
+          const transform = computedStyle.transform;
+
+          // Példa: "matrix(1, 0, 0, 1, 100, 50)"
+          const matrixValues = transform.match(/matrix\((.+)\)/)[1].split(", ");
+          const translateX = parseFloat(matrixValues[4]); // Az 5. érték
+          const translateY = parseFloat(matrixValues[5]); // A 6. érték
+
+          console.log("translateX:", translateX); // Például: 100
+          console.log("translateY:", translateY); // Például: 50
+        } else if (Card.id == PlayerCards.length - 1) {
+          const computedStyle = window.getComputedStyle(Card);
+          const top = computedStyle.top;
+          const right = computedStyle.right;
+
+          console.log(`top: ${top}`);
+          console.log(`right: ${right}`);
+        }
+      });
     }
-  }, [index, Ignore, DealerCards?.length, PlayerCards]);
+  }, [index, Ignore, DealerCards?.length, PlayerCards, PlayerCards?.length]);
 
   function map_range(value, low1, high1, low2, high2) {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
@@ -40,6 +63,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     <div
       className={style.CardContainer}
       ref={CardRef}
+      id={index}
       style={{
         transition: "transform 0.5s ease-in-out",
         transform: PlayerCards

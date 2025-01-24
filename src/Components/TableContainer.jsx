@@ -1,12 +1,14 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import BlackJackCard from "../Components/UI/Cards/BlackJackCard";
 import { CardContext } from "../Contexts/CardContext";
 import ActionButton from "./ActionButton";
 import style from "../Components/ComponentStyles/TableContainer.module.css";
 import Deck from "./UI/Deck";
+import CardValueCounter from "./CardValueCounter";
 function TableContainer({ GameOver }) {
   const { setDealerCards, setPlayerCards, PlayerCards, DealerCards } = useContext(CardContext);
   const [Ignore, setIgnore] = useState(false);
+  const FirstPlayerCardRef = useRef(null);
   return (
     <>
       <div className={style.BlackJack}>
@@ -23,10 +25,19 @@ function TableContainer({ GameOver }) {
         </div>
 
         <div className={style.playerCardContainer}>
+          <CardValueCounter />
           {PlayerCards.map((item, index) => {
             return (
               <div key={index}>
-                <BlackJackCard symbol={item.Symbol} number={item.Number} index={index} PlayerCards={PlayerCards} Ignore={Ignore} PushCards={GameOver.PushCards} />
+                <BlackJackCard
+                  symbol={item.Symbol}
+                  FirstPlayerCardRef={FirstPlayerCardRef}
+                  number={item.Number}
+                  index={index}
+                  PlayerCards={PlayerCards}
+                  Ignore={Ignore}
+                  PushCards={GameOver.PushCards}
+                />
               </div>
             );
           })}
