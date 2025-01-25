@@ -15,6 +15,7 @@ function TableContainer({ GameOver }) {
         <Deck />
 
         <div className={style.dealerCardContainer}>
+          <CardValueCounter DealerCards={DealerCards} />
           {DealerCards.map((item, index) => {
             return (
               <div key={index}>
@@ -25,7 +26,7 @@ function TableContainer({ GameOver }) {
         </div>
 
         <div className={style.playerCardContainer}>
-          <CardValueCounter />
+          <CardValueCounter PlayerCards={PlayerCards} />
           {PlayerCards.map((item, index) => {
             return (
               <div key={index}>

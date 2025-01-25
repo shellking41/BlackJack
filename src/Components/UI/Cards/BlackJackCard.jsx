@@ -4,9 +4,10 @@ import Diamond from "./Symbols/Diamond";
 import Hearth from "./Symbols/Heart";
 import Pikes from "./Symbols/Pikes";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Rotator from "../../Rotator";
+import { CardContext } from "../../../Contexts/CardContext";
 
 function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCards, FirstPlayerCardRef }) {
   const CardRef = useRef(null);
@@ -19,8 +20,14 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     // Cards should be closer together when rotated
     const ySpread = -1;
     const xSpread = -2; // Adjust this value to control card spacing
-    const yOffset = index * ySpread;
+
     const xOffset = index * xSpread;
+    let yOffset = index * ySpread - 10;
+
+    if (DealerCards) {
+      const ySpread = -5;
+      yOffset = index * ySpread + 20;
+    }
 
     // const zIndex = map_range(index, 0, 99, 99, 0);
 
@@ -31,27 +38,6 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     if (PlayerCards) {
       Card.style.setProperty("--starting-pointY", `-110%`);
       Card.style.setProperty("--starting-pointX", `5%`);
-      requestAnimationFrame(() => {
-        if (Card.id == 0) {
-          const computedStyle = window.getComputedStyle(Card);
-          const transform = computedStyle.transform;
-
-          // Példa: "matrix(1, 0, 0, 1, 100, 50)"
-          const matrixValues = transform.match(/matrix\((.+)\)/)[1].split(", ");
-          const translateX = parseFloat(matrixValues[4]); // Az 5. érték
-          const translateY = parseFloat(matrixValues[5]); // A 6. érték
-
-          console.log("translateX:", translateX); // Például: 100
-          console.log("translateY:", translateY); // Például: 50
-        } else if (Card.id == PlayerCards.length - 1) {
-          const computedStyle = window.getComputedStyle(Card);
-          const top = computedStyle.top;
-          const right = computedStyle.right;
-
-          console.log(`top: ${top}`);
-          console.log(`right: ${right}`);
-        }
-      });
     }
   }, [index, Ignore, DealerCards?.length, PlayerCards, PlayerCards?.length]);
 
@@ -67,9 +53,9 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
       style={{
         transition: "transform 0.5s ease-in-out",
         transform: PlayerCards
-          ? `translateX(${(index - PlayerCards.length + 1) * 38 - PushCards * 20}%) translateY(${(index - PlayerCards.length + 1) * 10}%)  `
+          ? `translateX(${(index - PlayerCards.length + 1) * 20 - PushCards * 20}%) translateY(${(index - PlayerCards.length + 1) * 10}%)  `
           : DealerCards
-          ? `translateX(${(index - DealerCards.length + 1) * 38 - PushCards * 20}%) translateY(${(index - DealerCards.length + 1) * 10}%) `
+          ? `translateX(${(index - DealerCards.length + 1) * 20 - PushCards * 20}%)  `
           : null,
       }} /*transform--> always push to the left if a new card initialized*/
     >

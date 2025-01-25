@@ -28,8 +28,10 @@ function BlackJack() {
 
   useEffect(() => {
     if ((PlayerCards.length == 0 || DealerCards.length == 0) && !GameOver.isGameOver) {
-      BJGameStart(setPlayerCards, setDealerCards, PlayerCards);
+      //BJGameStart(setPlayerCards, setDealerCards, PlayerCards);
 
+      setPlayerCards([{ Symbol: "Heart", Number: "5" }]);
+      setDealerCards([{ Symbol: "Heart", Number: "5" }]);
       console.log("asd");
     }
   }, []);
