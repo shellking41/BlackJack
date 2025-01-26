@@ -11,13 +11,13 @@ function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGa
 
     if (setPlayerCards) {
       if (Action == "GetACard") {
-        GetACard(setPlayerCards);
+        GetACard(setPlayerCards, null);
       }
     }
 
     if (setDealerCards) {
       if (Action == "GetACard") {
-        GetACard(setDealerCards);
+        GetACard(null, setDealerCards);
       }
     }
     if (Action == "GameOver") {

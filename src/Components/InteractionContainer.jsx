@@ -59,7 +59,7 @@ function InteractionContainer() {
           />
           <ActionButton
             Action={"GetACard"}
-            setPlayerCards={setDealerCards}
+            setDealerCards={setDealerCards}
             Text={
               <p>
                 Double{" "}

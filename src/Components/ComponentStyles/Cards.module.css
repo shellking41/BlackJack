@@ -1,7 +1,7 @@
 .CardContainer {
   position: absolute;
-  top: var(--starting-pointY, -10%);
-  right: var(--starting-pointX, 5%);
+  top: var(--starting-pointY, -24%);
+  right: var(--starting-pointX, 5.5%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,9 +11,10 @@
   border-radius: 5px;
   margin: 2px;
 
-  animation-duration: 700ms;
+  animation-duration: var(--Animation-Speed, 700ms);
   animation-timing-function: cubic-bezier(0.35, 0.16, 0, 1.02);
   animation-name: GetACard;
+  animation-delay: var(--Delay, 0ms);
   animation-fill-mode: forwards;
   z-index: var(--zIndex);
   backface-visibility: hidden;

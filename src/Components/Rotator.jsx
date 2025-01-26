@@ -7,9 +7,12 @@ function Rotator({ children, DealerCards, index, Ignore, PlayerCards }) {
   useEffect(() => {
     const Rotator = RotatorRef.current;
 
-    if (DealerCards && !(DealerCards?.length == 2 && DealerCards?.length - 1 == index)) {
+    if (DealerCards && index != 1) {
+      Rotator.classList.add(style.animated);
+    } else if (DealerCards && index == 1 && DealerCards?.length >= 3) {
       Rotator.classList.add(style.animated);
     }
+
     if (PlayerCards || Ignore == true) {
       Rotator.classList.add(style.animated);
     }

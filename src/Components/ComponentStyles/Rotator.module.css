@@ -7,7 +7,7 @@
 
 /*Flip if not Dealers 2nd Card*/
 .animated {
-  animation: FlipACard 1000ms cubic-bezier(0.35, 0.16, 0, 1.02);
+  animation: FlipACard 1000ms cubic-bezier(0.35, 0.16, 0, 1.02) var(--Delay, 0ms);
   animation-fill-mode: forwards;
 }
 

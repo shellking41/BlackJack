@@ -7,6 +7,8 @@ export const CardContextProvider = ({ children }) => {
   const [PlayerCards, setPlayerCards] = useState([]);
   const [DealerCards, setDealerCards] = useState([]);
 
+  const [PlayerCardsValue, setPlayerCardsValue] = useState(0);
+  const [DealerCardsValue, setDealerCardsValue] = useState(0);
   // Függvények a state-ek kezelésére
 
   // Az értékek, amelyeket a context elérhetővé tesz
@@ -15,6 +17,10 @@ export const CardContextProvider = ({ children }) => {
     setPlayerCards,
     DealerCards,
     setDealerCards,
+    PlayerCardsValue,
+    setPlayerCardsValue,
+    DealerCardsValue,
+    setDealerCardsValue,
   };
 
   return <CardContext.Provider value={contextValue}>{children}</CardContext.Provider>;

@@ -7,6 +7,6 @@
   box-shadow: var(--DefaultShadow);
   position: absolute;
   top: 5%;
-  right: 40.2%;
+
   z-index: 500;
 }

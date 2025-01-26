@@ -9,7 +9,7 @@ function useBJGameStart() {
     const PlayerTimeoutId = setTimeout(() => {
       setPlayerCards((prevItems) =>
         prevItems.length === 1 // Additional check
-          ? [...prevItems, { Symbol: "Diamond", Number: "9" }]
+          ? [...prevItems, { Symbol: "Diamond", Number: "2" }]
           : prevItems
       );
     }, 1000);
@@ -21,7 +21,7 @@ function useBJGameStart() {
     const DealerTimeoutId2 = setTimeout(() => {
       setDealerCards((prevItems) =>
         prevItems.length === 1 // Additional check
-          ? [...prevItems, { Symbol: "Diamond", Number: "9" }]
+          ? [...prevItems, { Symbol: "Diamond", Number: "4" }]
           : prevItems
       );
     }, 1500);

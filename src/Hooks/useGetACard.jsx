@@ -1,16 +1,14 @@
 import { useState } from "react";
 
 function useGetACard() {
-  const GetACard = async (setPlayerCards, setDealersCards) => {
-    try {
-      if (setPlayerCards) {
-        setPlayerCards((prevItems) => [...prevItems, { Symbol: "Diamond", Number: "10" }]);
-      }
-      if (setDealersCards) {
-        setDealersCards((prevItems) => [...prevItems, { Symbol: "Diamond", Number: "10" }]);
-      }
-    } catch (error) {
-      console.log(error);
+  const GetACard = (setPlayerCards, setDealersCards) => {
+    if (setPlayerCards) {
+      setPlayerCards((prevItems) => [...prevItems, { Symbol: "Diamond", Number: "K" }]);
+      console.log("PLAYER");
+    }
+    if (setDealersCards) {
+      setDealersCards((prevItems) => [...prevItems, { Symbol: "Clubs", Number: "2" }]);
+      console.log("DEALER");
     }
   };
 
