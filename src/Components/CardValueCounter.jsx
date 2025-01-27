@@ -9,25 +9,28 @@ function CardValueCounter({ PlayerCards, DealerCards }) {
     requestAnimationFrame(() => {
       const WaitForTheFlip = setTimeout(() => {
         if (PlayerCards) {
-          if (
-            PlayerCards.some((item, index) => {
-              return index === PlayerCards?.length - 1 && (item.Number === "J" || item.Number === "Q" || item.Number === "K");
-            })
-          ) {
-            setPlayerCardsValue((prev) => prev + 10);
-          } else setPlayerCardsValue(PlayerCards.reduce((accumulator, currentValue) => accumulator + Number(currentValue.Number), 0));
+          setPlayerCardsValue(
+            PlayerCards.reduce((accumulator, currentValue) => {
+              if (["J", "Q", "K"].includes(currentValue.Number)) {
+                return accumulator + 10;
+              }
+              return accumulator + Number(currentValue.Number);
+            }, 0)
+          );
         } else {
-          if (
-            DealerCards.some((item) => {
-              return item.Number === "J" || item.Number === "Q" || item.Number === "K";
-            })
-          ) {
-            setDealerCardsValue((prev) => prev + 10);
-          } else setDealerCardsValue(DealerCards.reduce((accumulator, currentValue) => accumulator + Number(currentValue.Number), 0));
+          setDealerCardsValue(
+            DealerCards.reduce((accumulator, currentValue) => {
+              if (["J", "Q", "K"].includes(currentValue.Number)) {
+                return accumulator + 10;
+              }
+              return accumulator + Number(currentValue.Number);
+            }, 0)
+          );
         }
       }, 800);
       return () => clearTimeout(WaitForTheFlip);
     });
+    console.log(PlayerCardsValue);
   }, [PlayerCards?.length, DealerCards?.length]);
 
   return (
