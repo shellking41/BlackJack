@@ -11,14 +11,14 @@ import InteractionContainer from "../Components/InteractionContainer";
 import useGetACard from "../Hooks/useGetACard";
 import TableContainer from "../Components/TableContainer";
 import useCardValueCheck from "../Hooks/useCardValueCheck";
+import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 
 function BlackJack() {
   const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
+  const { GameOver } = useContext(PlayerActionContext);
 
   const ShakerRef = useRef(null);
   const [hasRun, setHasRun] = useState(false);
-
-  const [GameOver, setGameOver] = useState({ isGameOver: false, PushCards: 0 });
 
   const { BJGameStart } = useBJGameStart();
   const { GetACard } = useGetACard();
@@ -35,7 +35,7 @@ function BlackJack() {
 
       console.log("asd");
     }
-  }, []);
+  }, [GameOver.isGameOver]);
 
   return (
     <div className={style.GameContainer}>
