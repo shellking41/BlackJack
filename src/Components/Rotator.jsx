@@ -9,12 +9,15 @@ function Rotator({ children, DealerCards, index, Ignore, PlayerCards }) {
 
     if (DealerCards && index != 1) {
       Rotator.classList.add(style.animated);
+      DealerCards[index].Flipped = true;
     } else if (DealerCards && index == 1 && DealerCards?.length >= 3) {
       Rotator.classList.add(style.animated);
+      DealerCards[index].Flipped = true;
     }
 
     if (PlayerCards || Ignore == true) {
       Rotator.classList.add(style.animated);
+      PlayerCards[index].Flipped = true;
     }
   }, [index, Ignore, DealerCards?.length]);
 

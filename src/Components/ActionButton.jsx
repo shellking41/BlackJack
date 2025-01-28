@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useGetACard from "../Hooks/useGetACard";
 import style from "../Components/ComponentStyles/ActionButton.module.css";
+import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGameOver, Text }) {
   const { GetACard } = useGetACard();
+  const { setStand } = useContext(PlayerActionContext);
 
   const handleAction = async (Action) => {
-    if (Action == "Stand") {
-      setIgnore(true);
-    }
-
     if (setPlayerCards) {
       if (Action == "GetACard") {
         GetACard(setPlayerCards, null);
@@ -27,6 +25,10 @@ function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGa
       await setPlayerCards([]);
       await setDealerCards([]);
       setGameOver({ isGameOver: false, PushCards: 0 });
+    }
+
+    if (Action == "Stand") {
+      setStand(true);
     }
   };
 

@@ -4,24 +4,24 @@ import useGetACard from "./useGetACard";
 function useBJGameStart() {
   const { GetACard } = useGetACard();
   const BJGameStart = (setPlayerCards, setDealerCards, PlayerCards) => {
-    setPlayerCards([{ Symbol: "Diamond", Number: "10" }]);
+    setPlayerCards([{ Symbol: "Diamond", Number: "10", Flipped: false }]);
 
     const PlayerTimeoutId = setTimeout(() => {
       setPlayerCards((prevItems) =>
         prevItems.length === 1 // Additional check
-          ? [...prevItems, { Symbol: "Diamond", Number: "2" }]
+          ? [...prevItems, { Symbol: "Diamond", Number: "2", Flipped: false }]
           : prevItems
       );
     }, 1000);
 
     const DealerTimeoutId1 = setTimeout(() => {
-      setDealerCards([{ Symbol: "Diamond", Number: "9" }]);
+      setDealerCards([{ Symbol: "Diamond", Number: "9", Flipped: false }]);
     }, 500);
 
     const DealerTimeoutId2 = setTimeout(() => {
       setDealerCards((prevItems) =>
         prevItems.length === 1 // Additional check
-          ? [...prevItems, { Symbol: "Diamond", Number: "4" }]
+          ? [...prevItems, { Symbol: "Diamond", Number: "4", Flipped: false }]
           : prevItems
       );
     }, 1500);

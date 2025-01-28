@@ -5,13 +5,16 @@ import "./App.css";
 import BlackJack from "./Games/BlackJack";
 
 import { CardContextProvider } from "./Contexts/CardContext";
+import PlayerActionContextProvider from "./Contexts/PlayerActionContext";
 
 function App() {
   return (
     <>
-      <CardContextProvider>
-        <BlackJack />
-      </CardContextProvider>
+      <PlayerActionContextProvider>
+        <CardContextProvider>
+          <BlackJack />
+        </CardContextProvider>
+      </PlayerActionContextProvider>
     </>
   );
 }

@@ -2,36 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import style from "../Components/ComponentStyles/CardValueCounter.module.css";
 import { useRef } from "react";
 import { CardContext } from "../Contexts/CardContext";
+import useCardValueCounter from "../Hooks/useCardValueCounter.js";
+import useCardValueCheck from "../Hooks/useCardValueCheck.js";
 function CardValueCounter({ PlayerCards, DealerCards }) {
   const { setDealerCardsValue, DealerCardsValue, setPlayerCardsValue, PlayerCardsValue } = useContext(CardContext);
 
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      const WaitForTheFlip = setTimeout(() => {
-        if (PlayerCards) {
-          setPlayerCardsValue(
-            PlayerCards.reduce((accumulator, currentValue) => {
-              if (["J", "Q", "K"].includes(currentValue.Number)) {
-                return accumulator + 10;
-              }
-              return accumulator + Number(currentValue.Number);
-            }, 0)
-          );
-        } else {
-          setDealerCardsValue(
-            DealerCards.reduce((accumulator, currentValue) => {
-              if (["J", "Q", "K"].includes(currentValue.Number)) {
-                return accumulator + 10;
-              }
-              return accumulator + Number(currentValue.Number);
-            }, 0)
-          );
-        }
-      }, 800);
-      return () => clearTimeout(WaitForTheFlip);
-    });
-    console.log(PlayerCardsValue);
-  }, [PlayerCards?.length, DealerCards?.length]);
+  useCardValueCounter(PlayerCards, DealerCards);
 
   return (
     <div

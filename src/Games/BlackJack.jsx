@@ -10,6 +10,7 @@ import { CardContext } from "../Contexts/CardContext";
 import InteractionContainer from "../Components/InteractionContainer";
 import useGetACard from "../Hooks/useGetACard";
 import TableContainer from "../Components/TableContainer";
+import useCardValueCheck from "../Hooks/useCardValueCheck";
 
 function BlackJack() {
   const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
@@ -22,9 +23,11 @@ function BlackJack() {
   const { BJGameStart } = useBJGameStart();
   const { GetACard } = useGetACard();
 
+  useCardValueCheck();
+
   useEffect(() => {
-    console.log(PlayerCards);
-  }, [PlayerCards]);
+    console.log(DealerCards);
+  }, [DealerCards]);
 
   useEffect(() => {
     if ((PlayerCards.length == 0 || DealerCards.length == 0) && !GameOver.isGameOver) {

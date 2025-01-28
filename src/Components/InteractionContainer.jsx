@@ -31,7 +31,7 @@ function InteractionContainer() {
             }
           />
           <ActionButton
-            Action={"GetACard"}
+            Action={"Stand"}
             setPlayerCards={setPlayerCards}
             Text={
               <p>
