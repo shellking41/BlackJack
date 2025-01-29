@@ -9,6 +9,7 @@ export const CardContextProvider = ({ children }) => {
 
   const [PlayerCardsValue, setPlayerCardsValue] = useState(0);
   const [DealerCardsValue, setDealerCardsValue] = useState(0);
+
   // Függvények a state-ek kezelésére
 
   // Az értékek, amelyeket a context elérhetővé tesz

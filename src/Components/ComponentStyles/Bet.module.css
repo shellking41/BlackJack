@@ -30,7 +30,8 @@
 }
 
 .BetInputQuickBetContainer {
-  background-color: var(--QuickBetButtonColor);
+  background-color: var(--Disabled-BackGround-color-Bet, var(--QuickBetButtonColor));
+
   width: 100%;
   padding: 2px;
   border-radius: 3px;
@@ -46,7 +47,7 @@
 
 .BetInputContainer::before {
   content: "$";
-  background-color: var(--BetButtonColor);
+  background-color: var(--Disabled-BackGround-color-Bet-Input, var(--BetButtonColor));
   display: flex;
   aspect-ratio: 1/1;
   height: 50%;
@@ -95,11 +96,11 @@ input[type="number"] {
   background-color: black;
 }
 .QuickBetContainer button {
-  background-color: var(--QuickBetButtonColor);
+  background-color: var(--Disabled-BackGround-color-Bet, var(--QuickBetButtonColor));
   width: 50%;
   border: none;
   font-size: calc(0.5vw + var(--InteractionContainerFontSize));
-  color: white;
+  color: var(--Disabled-Font-Color-Bet, white);
 }
 
 @media (max-width: 600px) {

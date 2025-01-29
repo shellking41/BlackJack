@@ -4,9 +4,12 @@ import style from "../Components/ComponentStyles/ActionButton.module.css";
 import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 function ActionButton({ Action, setPlayerCards, setDealerCards, setIgnore, setGameOver, Text }) {
   const { GetACard } = useGetACard();
-  const { setStand } = useContext(PlayerActionContext);
+  const { setStand, GameOver } = useContext(PlayerActionContext);
 
   const handleAction = async (Action) => {
+    if (GameOver.isGameOver) {
+      return;
+    }
     if (setPlayerCards) {
       if (Action == "GetACard") {
         GetACard(setPlayerCards, null);

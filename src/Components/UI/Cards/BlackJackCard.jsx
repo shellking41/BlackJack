@@ -8,8 +8,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Rotator from "../../Rotator";
 import { CardContext } from "../../../Contexts/CardContext";
+import { PlayerActionContext } from "../../../Contexts/PlayerActionContext";
 
 function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCards, FirstPlayerCardRef }) {
+  const { setGameOverAnimationEnd } = useContext(PlayerActionContext);
+
   const CardRef = useRef(null);
   const RotatorRef = useRef(null);
 
@@ -61,6 +64,13 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
           : DealerCards
           ? `translateX(${(index - DealerCards.length + 1) * 20 - PushCards * 20}%)  `
           : null,
+      }}
+      onAnimationEnd={() => {
+        if (PushCards == 100) {
+          setGameOverAnimationEnd(true);
+        } else {
+          setGameOverAnimationEnd(false);
+        }
       }} /*transform--> always push to the left if a new card initialized*/
     >
       <Rotator DealerCards={DealerCards} Ignore={Ignore} PlayerCards={PlayerCards} index={index}>
