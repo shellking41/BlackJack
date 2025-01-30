@@ -7,29 +7,23 @@ function useCardValueCheck() {
   const { Stand, setStand, setGameOver, GameOverAnimationEnd } = useContext(PlayerActionContext);
 
   useEffect(() => {
-    if (GameOverAnimationEnd) {
-      setPlayerCards([]);
-      setDealerCards([]);
-      console.log("Animation ended");
-    }
-
-    if (DealerCardsValue <= 16 && PlayerCardsValue > DealerCardsValue) {
-      return;
-    }
-
     console.log(PlayerCardsValue);
+
     if (PlayerCardsValue > 21) {
       console.log("You Lose");
-      setGameOver({ isGameOver: true, PushCards: 100 });
+      setGameOver({ isGameOver: true, PushCards: 0, Status: "Lose" });
       setStand(false);
 
+      return;
+    }
+    if (DealerCardsValue <= 16 && PlayerCardsValue > DealerCardsValue) {
       return;
     }
 
     if (DealerCardsValue > 21 && Stand) {
       console.log("You WIN");
 
-      setGameOver({ isGameOver: true, PushCards: 100 });
+      setGameOver({ isGameOver: true, PushCards: 0, Status: "Win" });
 
       setStand(false);
 
@@ -38,7 +32,7 @@ function useCardValueCheck() {
 
     if (PlayerCardsValue <= 21 && PlayerCardsValue > DealerCardsValue && Stand) {
       console.log("You WIN");
-      setGameOver({ isGameOver: true, PushCards: 100 });
+      setGameOver({ isGameOver: true, PushCards: 0, Status: "Win" });
       setStand(false);
 
       return;
@@ -46,7 +40,7 @@ function useCardValueCheck() {
 
     if (PlayerCardsValue < DealerCardsValue && DealerCardsValue > 16 && Stand) {
       console.log("You Lose");
-      setGameOver({ isGameOver: true, PushCards: 100 });
+      setGameOver({ isGameOver: true, PushCards: 0, Status: "Lose" });
       setStand(false);
 
       return;

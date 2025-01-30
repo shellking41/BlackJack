@@ -15,14 +15,24 @@ function CardValueCounter({ PlayerCards, DealerCards }) {
 
   useEffect(() => {
     const ValueCounter = ValueCounterRef.current;
-    if (GameOver.isGameOver) {
+    if (GameOver.isGameOver && GameOver.PushCards) {
       ValueCounter.style.opacity = "0";
       ValueCounter.style.visibility = "hidden";
-      return;
     } else if (!GameOver.isGameOver) {
       ValueCounter.style.opacity = "1";
       ValueCounter.style.visibility = "visible";
+    }
+
+    if (DealerCards) {
       return;
+    }
+
+    if (GameOver.Status == "Win") {
+      ValueCounterRef.current.style.backgroundColor = "#00e500";
+    } else if (GameOver.Status == "Lose") {
+      ValueCounterRef.current.style.backgroundColor = "rgb(255, 0, 0)";
+    } else {
+      ValueCounterRef.current.style.backgroundColor = "#2e4655";
     }
   }, [GameOver]);
 

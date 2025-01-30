@@ -1,10 +1,13 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import style from "../Components/ComponentStyles/BetButton.module.css";
 import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 import { CardContext } from "../Contexts/CardContext";
 function BetButton() {
   const { setGameOver, setStand, GameOver } = useContext(PlayerActionContext);
-  const { setDealerCards, setPlayerCards } = useContext(CardContext);
+  const { setDealerCards, setPlayerCards, setDealerCardsValue, setPlayerCardsValue } = useContext(CardContext);
+
+  const [FirstBet, setFirstBet] = useState(true);
+  const [TableClearWaitTime, setTableClearWaitTime] = useState(0);
 
   const BetButtonsRef = useRef(null);
   useEffect(() => {
@@ -16,13 +19,28 @@ function BetButton() {
     }
   }, [GameOver]);
 
-  const handleBet = async () => {
+  //Working but need approvement
+  const handleBet = () => {
     if (!GameOver.isGameOver) {
       return;
     }
+    setGameOver({ isGameOver: true, PushCards: 100, Status: null });
 
-    setGameOver({ isGameOver: false, PushCards: 0 });
+    if (FirstBet) {
+      setFirstBet(false);
+      setTableClearWaitTime(500);
+    }
+    const Wait = setTimeout(() => {
+      setPlayerCards([]);
+      setDealerCards([]);
+      setDealerCardsValue(0);
+      setPlayerCardsValue(0);
+
+      setGameOver({ isGameOver: false, PushCards: 0, Status: null });
+    }, TableClearWaitTime);
+
     setStand(false);
+    return () => clearTimeout(Wait);
   };
 
   return (

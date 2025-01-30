@@ -15,7 +15,7 @@ import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 
 function BlackJack() {
   const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
-  const { GameOver } = useContext(PlayerActionContext);
+  const { GameOver, setGameOver } = useContext(PlayerActionContext);
 
   const ShakerRef = useRef(null);
 
@@ -30,6 +30,8 @@ function BlackJack() {
 
   useEffect(() => {
     if ((PlayerCards.length == 0 || DealerCards.length == 0) && !GameOver.isGameOver) {
+      setGameOver({ isGameOver: false, PushCards: 0, Status: null });
+
       BJGameStart(setPlayerCards, setDealerCards, PlayerCards);
 
       console.log("asd");

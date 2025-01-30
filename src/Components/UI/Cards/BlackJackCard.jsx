@@ -4,23 +4,23 @@ import Diamond from "./Symbols/Diamond";
 import Hearth from "./Symbols/Heart";
 import Pikes from "./Symbols/Pikes";
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Rotator from "../../Rotator";
 import { CardContext } from "../../../Contexts/CardContext";
 import { PlayerActionContext } from "../../../Contexts/PlayerActionContext";
 
 function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCards, FirstPlayerCardRef }) {
-  const { setGameOverAnimationEnd } = useContext(PlayerActionContext);
-
   const CardRef = useRef(null);
-  const RotatorRef = useRef(null);
+  const FrontCardRef = useRef(null);
 
-  useEffect(() => {
+  const { GameOver } = useContext(PlayerActionContext);
+
+  useLayoutEffect(() => {
     const Card = CardRef.current;
-
+    const FrontCard = FrontCardRef.current;
     // Calculate horizontal position
-    // Cards should be closer together when rotated
+
     const ySpread = -1;
     const xSpread = -2; // Adjust this value to control card spacing
 
@@ -45,8 +45,19 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     if (PlayerCards) {
       Card.style.setProperty("--starting-pointY", `-110%`);
       Card.style.setProperty("--starting-pointX", `5%`);
+
+      if (GameOver.Status == "Win") {
+        Card.style.outline = "calc(0.3vw + 0.3vh)  solid #00e500";
+        FrontCard.style.outline = "calc(0.3vw + 0.3vh)  solid #00e500";
+      } else if (GameOver.Status == "Lose") {
+        Card.style.outline = "calc(0.3vw + 0.3vh)  solid rgb(255, 0, 0)";
+        FrontCard.style.outline = "calc(0.3vw + 0.3vh)  solid rgb(255, 0, 0)";
+      } else {
+        Card.style.outline = "none";
+        FrontCard.style.outline = "none";
+      }
     }
-  }, [index, Ignore, DealerCards?.length, PlayerCards, PlayerCards?.length]);
+  }, [index, Ignore, DealerCards?.length, PlayerCards, PlayerCards?.length, GameOver]);
 
   function map_range(value, low1, high1, low2, high2) {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
@@ -65,16 +76,11 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
           ? `translateX(${(index - DealerCards.length + 1) * 20 - PushCards * 20}%)  `
           : null,
       }}
-      onAnimationEnd={() => {
-        if (PushCards == 100) {
-          setGameOverAnimationEnd(true);
-        } else {
-          setGameOverAnimationEnd(false);
-        }
-      }} /*transform--> always push to the left if a new card initialized*/
+
+      /*transform--> always push to the left if a new card initialized*/
     >
       <Rotator DealerCards={DealerCards} Ignore={Ignore} PlayerCards={PlayerCards} index={index}>
-        <div className={`${style.FrontCard}`}>
+        <div className={`${style.FrontCard}`} ref={FrontCardRef}>
           <div className={style.numberContainerTop}>
             <h1>{number}</h1>
           </div>
