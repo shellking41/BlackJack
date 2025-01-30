@@ -18,7 +18,6 @@ function BlackJack() {
   const { GameOver } = useContext(PlayerActionContext);
 
   const ShakerRef = useRef(null);
-  const [hasRun, setHasRun] = useState(false);
 
   const { BJGameStart } = useBJGameStart();
   const { GetACard } = useGetACard();

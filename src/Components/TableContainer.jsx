@@ -5,10 +5,14 @@ import ActionButton from "./ActionButton";
 import style from "../Components/ComponentStyles/TableContainer.module.css";
 import Deck from "./UI/Deck";
 import CardValueCounter from "./CardValueCounter";
+import useDealerDraw from "../Hooks/useDealerDraw";
 function TableContainer({ GameOver }) {
   const { setDealerCards, setPlayerCards, PlayerCards, DealerCards } = useContext(CardContext);
   const [Ignore, setIgnore] = useState(false);
   const FirstPlayerCardRef = useRef(null);
+
+  useDealerDraw();
+
   return (
     <>
       <div className={style.BlackJack}>

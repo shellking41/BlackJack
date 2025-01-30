@@ -7,7 +7,7 @@ function useGetACard() {
       console.log("PLAYER");
     }
     if (setDealersCards) {
-      setDealersCards((prevItems) => [...prevItems, { Symbol: "Clubs", Number: "5", Flipped: false }]);
+      setDealersCards((prevItems) => [...prevItems, { Symbol: "Clubs", Number: "2", Flipped: false }]);
       console.log("DEALER");
     }
   };

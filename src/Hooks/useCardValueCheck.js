@@ -13,6 +13,10 @@ function useCardValueCheck() {
       console.log("Animation ended");
     }
 
+    if (DealerCardsValue <= 16 && PlayerCardsValue > DealerCardsValue) {
+      return;
+    }
+
     console.log(PlayerCardsValue);
     if (PlayerCardsValue > 21) {
       console.log("You Lose");
@@ -24,6 +28,7 @@ function useCardValueCheck() {
 
     if (DealerCardsValue > 21 && Stand) {
       console.log("You WIN");
+
       setGameOver({ isGameOver: true, PushCards: 100 });
 
       setStand(false);
