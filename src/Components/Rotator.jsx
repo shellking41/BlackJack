@@ -6,6 +6,7 @@ import { CardContext } from "../Contexts/CardContext";
 function Rotator({ children, DealerCards, index, Ignore, PlayerCards }) {
   const { setDealerCards, setPlayerCards } = useContext(CardContext);
   const RotatorRef = useRef(null);
+  const { Stand } = useContext(PlayerActionContext);
 
   // setPlayerCards((prev) => {
   //   const newState = [...prev];
@@ -17,14 +18,14 @@ function Rotator({ children, DealerCards, index, Ignore, PlayerCards }) {
 
     if (DealerCards && index != 1) {
       Rotator.classList.add(style.animated);
-    } else if (DealerCards && index == 1 && DealerCards?.length >= 3) {
+    } else if (DealerCards && index == 1 && Stand) {
       Rotator.classList.add(style.animated);
     }
 
     if (PlayerCards || Ignore == true) {
       Rotator.classList.add(style.animated);
     }
-  }, [index, Ignore, DealerCards?.length]);
+  }, [index, Ignore, DealerCards?.length, Stand]);
 
   return (
     <div
