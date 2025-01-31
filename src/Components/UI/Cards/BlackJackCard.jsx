@@ -30,10 +30,10 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     if (DealerCards) {
       const ySpread = -5;
       yOffset = index * ySpread + 20;
-      if (DealerCards?.length - 1 == index && index == 2) {
-        Card.style.setProperty("--Delay", "200ms");
-        Card.style.setProperty("--Animation-Speed", "500ms");
-      }
+      // if (DealerCards?.length - 1 == index && index == 2) {
+      //   Card.style.setProperty("--Delay", "200ms");
+      //   Card.style.setProperty("--Animation-Speed", "500ms");
+      // }
     }
 
     // const zIndex = map_range(index, 0, 99, 99, 0);
