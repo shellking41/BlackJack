@@ -12,20 +12,17 @@ function useDealerDraw() {
     if (!Stand) {
       return;
     }
-    // const wait = setTimeout(() => {
-    //   if (DealerCards.length == 2) {
-    //     GetACard(null, setDealerCards);
-    //   }
-    // }, 500); //2nd card flip time
-    const notFlippedCount = DealerCards.filter((item) => item.Flipped == false).length;
 
-    if (DealerCardsValue < 17 && notFlippedCount == 0) {
-      GetACard(null, setDealerCards);
-    }
+    const wait = setTimeout(() => {
+      const notFlippedCount = DealerCards.filter((item) => item.Flipped == false).length; //BEST!!
+      const notMovedToPosition = DealerCards.filter((item) => item.MovedToPosition == false).length;
 
-    // return () => {
-    //   clearTimeout(wait);
-    // };
+      if (DealerCardsValue < 17 && notFlippedCount == 0 && notMovedToPosition == 0) {
+        GetACard(null, setDealerCards);
+      }
+    }, 200);
+
+    return () => clearTimeout(wait);
   }, [DealerCards?.length, DealerCards, Stand, DealerCardsValue]);
 }
 

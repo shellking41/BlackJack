@@ -7,7 +7,7 @@
 
 /*Flip if not Dealers 2nd Card*/
 .animated {
-  animation: FlipACard 1000ms cubic-bezier(0.35, 0.16, 0, 1.02) 500ms;
+  animation: FlipACard 1000ms cubic-bezier(0.35, 0.16, 0, 1.02) 0ms;
   animation-fill-mode: forwards;
 }
 
@@ -19,7 +19,7 @@
     transform: rotateY(0deg);
   }
   80% {
-    transform: rotateY(180deg);
+    transform: rotateY(0deg);
   }
 
   100% {

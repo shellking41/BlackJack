@@ -12,20 +12,20 @@ import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 
 function InteractionContainer() {
   const { PlayerCards, setPlayerCards, DealerCards, setDealerCards } = useContext(CardContext);
-  const { GameOver } = useContext(PlayerActionContext);
+  const { GameOver, Stand } = useContext(PlayerActionContext);
 
   const ActionButtonsRef = useRef(null);
 
   useEffect(() => {
     const ActionButtons = ActionButtonsRef.current;
-    if (GameOver.isGameOver) {
+    if (GameOver.isGameOver || Stand || PlayerCards.some((item) => item.Flipped == false)) {
       ActionButtons.style.setProperty("--Disabled-BackGround-color-Action-Button", "#1c3441");
       ActionButtons.style.setProperty("--Disabled-Font-Color-Action-Button", "#7d7d7d");
     } else {
       ActionButtons.style.removeProperty("--Disabled-BackGround-color-Action-Button");
       ActionButtons.style.removeProperty("--Disabled-Font-Color-Action-Button");
     }
-  }, [GameOver]);
+  }, [GameOver, Stand, PlayerCards]);
   return (
     <div className={style.InteractionContainer}>
       <Bet />

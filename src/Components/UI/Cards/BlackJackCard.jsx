@@ -15,6 +15,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
   const FrontCardRef = useRef(null);
 
   const { GameOver } = useContext(PlayerActionContext);
+  const { setDealerCards, setPlayerCards } = useContext(CardContext);
 
   useLayoutEffect(() => {
     const Card = CardRef.current;
@@ -59,9 +60,21 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     }
   }, [index, Ignore, DealerCards?.length, PlayerCards, PlayerCards?.length, GameOver]);
 
-  function map_range(value, low1, high1, low2, high2) {
-    return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
-  }
+  const handleAnimationEnd = () => {
+    if (DealerCards) {
+      setDealerCards((prev) => {
+        const NewState = [...prev];
+        NewState[index] = { ...NewState[index], MovedToPosition: true };
+        return NewState;
+      });
+    } else if (PlayerCards) {
+      setPlayerCards((prev) => {
+        const NewState = [...prev];
+        NewState[index] = { ...NewState[index], MovedToPosition: true };
+        return NewState;
+      });
+    }
+  };
 
   return (
     <div
@@ -76,6 +89,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
           ? `translateX(${(index - DealerCards.length + 1) * 20 - PushCards * 20}%)  `
           : null,
       }}
+      onAnimationEnd={handleAnimationEnd}
 
       /*transform--> always push to the left if a new card initialized*/
     >

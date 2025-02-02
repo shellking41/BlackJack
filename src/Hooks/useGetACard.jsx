@@ -3,11 +3,11 @@ import { useState } from "react";
 function useGetACard() {
   const GetACard = (setPlayerCards, setDealersCards) => {
     if (setPlayerCards) {
-      setPlayerCards((prevItems) => [...prevItems, { Symbol: "Diamond", Number: "2", Flipped: false }]);
+      setPlayerCards((prevItems) => [...prevItems, { Symbol: "Diamond", Number: "2", Flipped: false, MovedToPosition: false }]);
       console.log("PLAYER");
     }
     if (setDealersCards) {
-      setDealersCards((prevItems) => [...prevItems, { Symbol: "Clubs", Number: "2", Flipped: false }]);
+      setDealersCards((prevItems) => [...prevItems, { Symbol: "Clubs", Number: "11", Flipped: false, MovedToPosition: false }]);
       console.log("DEALER");
     }
   };

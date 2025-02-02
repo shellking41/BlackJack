@@ -19,10 +19,12 @@ function useCardValueCounter(PlayerCards, DealerCards) {
     } else {
       setDealerCardsValue(
         DealerCards.reduce((accumulator, currentValue) => {
-          if (["J", "Q", "K"].includes(currentValue.Number)) {
+          if (["J", "Q", "K"].includes(currentValue.Number) && currentValue.Flipped == true) {
             return accumulator + 10;
-          } else {
+          } else if (currentValue.Flipped == true) {
             return accumulator + Number(currentValue.Number);
+          } else {
+            return accumulator;
           }
         }, 0)
       );
