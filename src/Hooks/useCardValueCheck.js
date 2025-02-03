@@ -3,12 +3,11 @@ import { CardContext } from "../Contexts/CardContext";
 import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 
 function useCardValueCheck() {
-  const { PlayerCardsValue, setDealerCards, setPlayerCards, DealerCardsValue } = useContext(CardContext);
+  const { PlayerCardsValue, setPlayerCardsValue, DealerAcesCount, setDealerAcesCount, PlayerAcesCount, setPlayerAcesCount, DealerCardsValue, setDealerCardsValue } = useContext(CardContext);
   const { Stand, setStand, setGameOver, GameOverAnimationEnd } = useContext(PlayerActionContext);
 
   useEffect(() => {
-    console.log(PlayerCardsValue);
-
+    console.log(PlayerAcesCount);
     if (PlayerCardsValue > 21) {
       console.log("You Lose");
       setGameOver({ isGameOver: true, PushCards: 0, Status: "Lose" });
@@ -45,7 +44,13 @@ function useCardValueCheck() {
 
       return;
     }
-  }, [DealerCardsValue, PlayerCardsValue, GameOverAnimationEnd]);
+
+    if (DealerCardsValue == PlayerCardsValue && Stand) {
+      setGameOver({ isGameOver: true, PushCards: 0, Status: "Draw" });
+      setStand(false);
+      return;
+    }
+  }, [DealerCardsValue, PlayerCardsValue, GameOverAnimationEnd, PlayerAcesCount]);
 }
 
 export default useCardValueCheck;

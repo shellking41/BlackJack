@@ -50,9 +50,15 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
       if (GameOver.Status == "Win") {
         Card.style.outline = "calc(0.3vw + 0.3vh)  solid #00e500";
         FrontCard.style.outline = "calc(0.3vw + 0.3vh)  solid #00e500";
+        FrontCard.style.boxShadow = "none";
       } else if (GameOver.Status == "Lose") {
         Card.style.outline = "calc(0.3vw + 0.3vh)  solid rgb(255, 0, 0)";
         FrontCard.style.outline = "calc(0.3vw + 0.3vh)  solid rgb(255, 0, 0)";
+        FrontCard.style.boxShadow = "none";
+      } else if (GameOver.Status == "Draw") {
+        FrontCard.style.outline = "calc(0.3vw + 0.3vh) rgb(255, 196, 0)";
+        Card.style.outline = "calc(0.3vw + 0.3vh)  solid rgb(255, 196, 0)";
+        FrontCard.style.boxShadow = "none";
       } else {
         Card.style.outline = "none";
         FrontCard.style.outline = "none";

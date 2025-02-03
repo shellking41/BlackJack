@@ -7,7 +7,7 @@ import useCardValueCheck from "../Hooks/useCardValueCheck.js";
 import { PlayerActionContext } from "../Contexts/PlayerActionContext.jsx";
 
 function CardValueCounter({ PlayerCards, DealerCards }) {
-  const { setDealerCardsValue, DealerCardsValue, setPlayerCardsValue, PlayerCardsValue } = useContext(CardContext);
+  const { setDealerCardsValue, DealerCardsValue, setPlayerCardsValue, PlayerCardsValue, DealerAcesCount, PlayerAcesCount } = useContext(CardContext);
   const { GameOver, GameOverAnimationEnd } = useContext(PlayerActionContext);
 
   const ValueCounterRef = useRef(null);
@@ -31,6 +31,8 @@ function CardValueCounter({ PlayerCards, DealerCards }) {
       ValueCounterRef.current.style.backgroundColor = "#00e500";
     } else if (GameOver.Status == "Lose") {
       ValueCounterRef.current.style.backgroundColor = "rgb(255, 0, 0)";
+    } else if (GameOver.Status == "Draw") {
+      ValueCounterRef.current.style.backgroundColor = "rgb(255, 196, 0)";
     } else {
       ValueCounterRef.current.style.backgroundColor = "#2e4655";
     }
@@ -46,7 +48,7 @@ function CardValueCounter({ PlayerCards, DealerCards }) {
         top: PlayerCards ? `  ${35.5 + (PlayerCards.length - 1) * -4}%  ` : null,
       }}
     >
-      <p>{PlayerCards ? `${PlayerCardsValue}` : `${DealerCardsValue}`}</p>
+      <p>{PlayerCards ? (PlayerAcesCount == 0 ? `${PlayerCardsValue}` : `${PlayerCardsValue}/${PlayerCardsValue}`) : `${DealerCardsValue}`}</p>
     </div>
   );
 }
