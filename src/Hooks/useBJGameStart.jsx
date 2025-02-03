@@ -8,17 +8,52 @@ function useBJGameStart() {
       GetACard(setPlayer, setDealer);
     };
     DrawStartCards(setPlayerCards, null);
-
+    // setPlayerCards((prevItems) => [
+    //   ...prevItems,
+    //   {
+    //     Symbol: "Heart",
+    //     Number: "7",
+    //     Flipped: false,
+    //     MovedToPosition: false,
+    //   },
+    // ]);
     const PlayerTimeoutId = setTimeout(() => {
       DrawStartCards(setPlayerCards, null);
+      // setPlayerCards((prevItems) => [
+      //   ...prevItems,
+      //   {
+      //     Symbol: "Heart",
+      //     Number: "10",
+      //     Flipped: false,
+      //     MovedToPosition: false,
+      //   },
+      // ]);
     }, 1000);
 
     const DealerTimeoutId1 = setTimeout(() => {
       DrawStartCards(null, setDealerCards);
+      // setDealerCards((prevItems) => [
+      //   ...prevItems,
+      //   {
+      //     Symbol: "Heart",
+      //     Number: "7",
+      //     Flipped: false,
+      //     MovedToPosition: false,
+      //   },
+      // ]);
     }, 500);
 
     const DealerTimeoutId2 = setTimeout(() => {
       DrawStartCards(null, setDealerCards);
+      // setDealerCards((prevItems) => [
+      //   ...prevItems,
+      //   {
+      //     Symbol: "Heart",
+      //     Number: "10",
+      //     Flipped: false,
+      //     MovedToPosition: false,
+      //   },
+      // ]);
     }, 1500);
     return () => {
       clearTimeout(PlayerTimeoutId);
