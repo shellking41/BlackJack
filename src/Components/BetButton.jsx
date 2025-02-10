@@ -3,7 +3,7 @@ import style from "../Components/ComponentStyles/BetButton.module.css";
 import { PlayerActionContext } from "../Contexts/PlayerActionContext";
 import { CardContext } from "../Contexts/CardContext";
 function BetButton() {
-  const { setGameOver, setStand, GameOver } = useContext(PlayerActionContext);
+  const { setGameOver, setStand, GameOver, setDouble } = useContext(PlayerActionContext);
   const { setDealerCards, setPlayerCards, setDealerCardsValue, setPlayerCardsValue } = useContext(CardContext);
 
   const [FirstBet, setFirstBet] = useState(true);
@@ -35,7 +35,7 @@ function BetButton() {
       setDealerCards([]);
       setDealerCardsValue(0);
       setPlayerCardsValue(0);
-
+      setDouble(false);
       setGameOver({ isGameOver: false, PushCards: 0, Status: null });
     }, TableClearWaitTime);
 

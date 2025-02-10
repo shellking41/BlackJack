@@ -15,30 +15,10 @@
   0% {
     transform: rotateY(0deg);
   }
-  30% {
-    transform: rotateY(0deg);
-  }
-  80% {
+  70% {
     transform: rotateY(0deg);
   }
 
-  100% {
-    transform: rotateY(180deg);
-  }
-}
-.animatedWidthNoDelay {
-  animation: FlipACardWithNoDelay 500ms cubic-bezier(0.35, 0.16, 0, 1.02) 0ms;
-  animation-fill-mode: forwards;
-}
-
-@keyframes FlipACardWithNoDelay {
-  0% {
-    transform: rotateY(0deg);
-  }
-
-  80% {
-    transform: rotateY(180deg);
-  }
   100% {
     transform: rotateY(180deg);
   }

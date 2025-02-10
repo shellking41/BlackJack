@@ -59,21 +59,8 @@ function InteractionContainer() {
         </div>
         <div className={style.ActionButtonContainerRow2}>
           <ActionButton
-            Action={"GetACard"}
+            Action={"Double"}
             setPlayerCards={setPlayerCards}
-            Text={
-              <p>
-                Split{" "}
-                <span style={{ color: "gray" }}>
-                  <TbCardsFilled />
-                  <TbCardsFilled />
-                </span>
-              </p>
-            }
-          />
-          <ActionButton
-            Action={"GetACard"}
-            setDealerCards={setDealerCards}
             Text={
               <p>
                 Double{" "}

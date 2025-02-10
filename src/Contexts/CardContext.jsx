@@ -5,6 +5,7 @@ export const CardContext = createContext();
 // Provider komponens
 export const CardContextProvider = ({ children }) => {
   const [PlayerCards, setPlayerCards] = useState([]);
+  const [AllPlayerCardFlipped, setAllPlayerCardFlipped] = useState(false);
   const [DealerCards, setDealerCards] = useState([]);
 
   const [PlayerCardsValue, setPlayerCardsValue] = useState(0);
@@ -28,6 +29,8 @@ export const CardContextProvider = ({ children }) => {
     setDealerAcesCount,
     PlayerAcesCount,
     setPlayerAcesCount,
+    AllPlayerCardFlipped,
+    setAllPlayerCardFlipped,
   };
 
   return <CardContext.Provider value={contextValue}>{children}</CardContext.Provider>;

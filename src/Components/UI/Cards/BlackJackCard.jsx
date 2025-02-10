@@ -14,7 +14,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
   const CardRef = useRef(null);
   const FrontCardRef = useRef(null);
 
-  const { GameOver } = useContext(PlayerActionContext);
+  const { GameOver, Double } = useContext(PlayerActionContext);
   const { setDealerCards, setPlayerCards } = useContext(CardContext);
 
   useLayoutEffect(() => {
@@ -42,8 +42,10 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
     Card.style.setProperty("--zIndex", index + 1 * 10);
     Card.style.setProperty("--card-right", `${45 + xOffset}%`);
     Card.style.setProperty("--card-down", `${yOffset}%`);
+    Card.style.setProperty("--Middle", "100%");
 
     if (PlayerCards) {
+      Card.style.setProperty("--Middle", "0%");
       Card.style.setProperty("--starting-pointY", `-110%`);
       Card.style.setProperty("--starting-pointX", `5%`);
 
@@ -88,7 +90,7 @@ function Card({ symbol, number, index, PlayerCards, DealerCards, Ignore, PushCar
       ref={CardRef}
       id={index}
       style={{
-        transition: "transform 0.5s ease-in-out",
+        transition: "all 0.5s ease-in-out",
         transform: PlayerCards
           ? `translateX(${(index - PlayerCards.length + 1) * 20 - PushCards * 20}%) translateY(${(index - PlayerCards.length + 1) * 10}%)  `
           : DealerCards

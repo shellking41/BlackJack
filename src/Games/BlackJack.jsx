@@ -24,18 +24,13 @@ function BlackJack() {
 
   useCardValueCheck();
 
-  useEffect(
-    () => {
-      if (!GameOver.isGameOver) {
-        setGameOver({ isGameOver: false, PushCards: 0, Status: null });
+  useEffect(() => {
+    if (!GameOver.isGameOver) {
+      setGameOver({ isGameOver: false, PushCards: 0, Status: null });
 
-        BJGameStart(setPlayerCards, setDealerCards, PlayerCards, DealerCards);
-      }
-    },
-    [GameOver.isGameOver],
-    PlayerCards,
-    DealerCards
-  );
+      BJGameStart(setPlayerCards, setDealerCards, PlayerCards, DealerCards);
+    }
+  }, [GameOver.isGameOver]);
 
   return (
     <div className={style.GameContainer}>

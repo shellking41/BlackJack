@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { CardContext } from "../Contexts/CardContext";
 
 function useCardValueCounter(PlayerCards, DealerCards) {
-  const { setDealerCardsValue, setPlayerCardsValue, setPlayerAcesCount, setDealerAcesCount, PlayerAcesCount, DealerAcesCount } = useContext(CardContext);
+  const { setDealerCardsValue, setPlayerCardsValue,  } = useContext(CardContext);
 
   const Count = (Cards) => {
     let TotalCount = 0;

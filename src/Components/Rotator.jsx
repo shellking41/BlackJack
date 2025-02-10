@@ -5,6 +5,7 @@ import { CardContext } from "../Contexts/CardContext";
 //Flipping the card
 function Rotator({ children, DealerCards, index, Ignore, PlayerCards }) {
   const { setDealerCards, setPlayerCards } = useContext(CardContext);
+
   const RotatorRef = useRef(null);
   const { Stand } = useContext(PlayerActionContext);
 

@@ -67,6 +67,7 @@
   }
 
   100% {
+    scale: 100%;
     top: calc(30% - var(--card-down)); /*Menyire menjen le a Kártya*/
 
     right: calc(var(--card-right) - 5%); /*Menyire menjen balra a kártya */
