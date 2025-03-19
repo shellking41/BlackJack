@@ -1,0 +1,13 @@
+.CardValueCounterContainer {
+  width: 6%;
+  aspect-ratio: 16/5;
+  background-color: var(--QuickBetButtonColor);
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: var(--DefaultShadow);
+  position: absolute;
+  top: 5%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 500;
+}

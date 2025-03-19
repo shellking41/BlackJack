@@ -1,0 +1,23 @@
+.ActionButton {
+  border-radius: 5px;
+  border: none;
+  box-shadow: var(--DefaultShadow);
+  background-color: var(--Disabled-BackGround-color-Action-Button, #2e4655);
+  color: white;
+  font-size: clamp(2px, calc(1vw + 0.5vh), 30px);
+  width: 45%;
+  padding: 2px;
+  aspect-ratio: 16/7;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: var(--Disabled-Font-Color-Action-Button, white);
+}
+@media (max-width: 600px) {
+  .ActionButton {
+    width: 45%;
+    aspect-ratio: 16/3;
+  }
+}

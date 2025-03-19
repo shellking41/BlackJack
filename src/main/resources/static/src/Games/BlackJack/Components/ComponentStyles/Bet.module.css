@@ -1,0 +1,114 @@
+.BetContainer {
+  width: calc(90% - 4px);
+  height: 15%;
+  display: flex;
+
+  justify-content: center;
+  flex-direction: column;
+  font-weight: bolder;
+}
+.BetContainer div {
+  display: flex;
+  height: 100%;
+}
+.BetContainer div p {
+  font-size: var(--InteractionContainerFontSize);
+  color: rgb(154, 168, 190);
+}
+.BetAmount {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: clamp(10px, calc(1vw + 0.5vh), 15px);
+}
+
+.MoneyLeft {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: clamp(10px, calc(1vw + 0.5vh), 15px);
+}
+
+.BetInputQuickBetContainer {
+  background-color: var(--Disabled-BackGround-color-Bet, var(--QuickBetButtonColor));
+
+  width: 100%;
+  padding: 2px;
+  border-radius: 3px;
+  box-shadow: var(--DefaultShadow);
+}
+
+.BetInputContainer {
+  width: 70%;
+  height: 100%;
+
+  position: relative;
+}
+
+.BetInputContainer::before {
+  content: "$";
+  background-color: var(--Disabled-BackGround-color-Bet-Input, var(--BetButtonColor));
+  display: flex;
+  aspect-ratio: 1/1;
+  height: 50%;
+
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--InteractionContainerFontSize);
+  border-radius: 30px;
+}
+.BetInput {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: clamp(2px, calc(1vw + 0.5vh), 30px);
+  font-weight: bolder;
+  padding-left: 10px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin-right: 20%;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.QuickBetContainer {
+  width: 30%;
+  position: relative;
+}
+.QuickBetContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 50%;
+  width: 2px;
+  border-radius: 5px;
+  height: 80%;
+  background-color: black;
+}
+.QuickBetContainer button {
+  background-color: var(--Disabled-BackGround-color-Bet, var(--QuickBetButtonColor));
+  width: 50%;
+  border: none;
+  font-size: calc(0.5vw + var(--InteractionContainerFontSize));
+  color: var(--Disabled-Font-Color-Bet, white);
+}
+
+@media (max-width: 600px) {
+  .BetContainer {
+    height: 30%;
+  }
+
+  .QuickBetContainer button {
+    font-size: clamp(2px, calc(2vw + 0.5vh), 30px);
+  }
+}
