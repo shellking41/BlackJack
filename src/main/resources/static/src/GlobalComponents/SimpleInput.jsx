@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SimpleInput({placeholder = "placeholder", type = "text", classname = "", onChange, name}) {
+function SimpleInput({placeholder = "placeholder", type = "text", classname = "", onChange, name, reference}) {
     return (
         <input
             className={classname}
@@ -8,6 +8,7 @@ function SimpleInput({placeholder = "placeholder", type = "text", classname = ""
             placeholder={placeholder}
             name={name}
             onChange={onChange}
+            ref={reference}
         />
     );
 }

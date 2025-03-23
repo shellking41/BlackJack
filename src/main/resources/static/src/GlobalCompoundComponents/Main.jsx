@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import MainPage from "../Pages/MainPage.jsx";
 import Form from "./Form.jsx";
-import {UseApiCallHook} from "../Hooks/useApiCallHook.js";
+import {UseApiCallHook} from "../GlobalHooks/useApiCallHook.js";
 import {UserContext} from "../GlobalContext/UserContext.jsx";
 
 function Main() {
@@ -15,10 +15,10 @@ function Main() {
                       {type: "email", placeholder: "Enter your email", name: "email"},
                       {type: "password", placeholder: "Enter your password", name: "password"}
                   ]}
-               
+
                   onSubmit={(e, formData) => {
 
-                      UseApiCallHook.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, formData)
+                      UseApiCallHook.post(`${import.meta.env.VITE_API_URL}/v1/auth/register`, formData)
                           .then(() => {
                               // Ha a post kérés sikeres, akkor frissítjük az oldalt
                               window.location.reload(); // Csak most frissítünk, miután a válasz megérkezett

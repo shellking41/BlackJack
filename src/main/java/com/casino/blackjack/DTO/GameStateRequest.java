@@ -13,6 +13,6 @@ import java.math.BigDecimal;
 
 public class GameStateRequest {
     @NotNull(message = "Bet must not be null")
-    @DecimalMin(value = "0.01", message = "Bet must be greater than zero")
+    @DecimalMin(value = "0.01", message = "Bet is not valid")
     private BigDecimal currentBet;
 }

@@ -5,8 +5,15 @@ export const UseApiCallHook = {
     get: async (url) => {
         try {
             const response = await fetch(url)
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.log(errorData)
+            }
+
             const convertedResponse = await parseResponse(response)
             console.log(convertedResponse);
+            return convertedResponse
         } catch (error) {
             console.log(error.message)
         }
@@ -15,16 +22,46 @@ export const UseApiCallHook = {
         try {
             const response = await fetch(url, {
                 method: "POST",
+
+                headers: {
+                    "Content-Type": "application/Json"
+                },
                 credentials: "include",
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.log(errorData)
+            }
+
+            const convertedResponse = await parseResponse(response)
+            console.log(convertedResponse);
+            return convertedResponse;
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    put: async (url, data) => {
+        try {
+            const response = await fetch(url, {
+                credentials: "include",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/Json"
                 },
                 body: JSON.stringify(data)
             })
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.log(errorData)
+            }
+
             const convertedResponse = await parseResponse(response)
             console.log(convertedResponse);
+            return convertedResponse;
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
     }
 

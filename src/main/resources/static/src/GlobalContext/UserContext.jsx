@@ -5,26 +5,22 @@ export const UserContext = createContext();
 
 function UserContextProvider({children}) {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+    const [userInfo, setUserInfo] = useState({
+        firstName: "",
+        lastName: "",
+        userName: "",
+        money: "0",
+        currentBet: "0"
+    });
 
 
-    const values = {
-        firstName,
-        lastName,
-        userName,
-        password,
-        setPassword,
-        setUserName,
-        setLastName,
-        setFirstName
-    }
+    const values = {userInfo, setUserInfo}
 
     return (
-        <UserContext.provider value={{values}}>{children}</UserContext.provider>
+        <UserContext.Provider value={values}>{children}</UserContext.Provider>
     );
+
 }
 
-export default UserContextProvider;
+export default UserContextProvider
+
